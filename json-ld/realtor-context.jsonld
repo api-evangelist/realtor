@@ -1,0 +1,175 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "realtor": "https://realtor.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+
+    "Property": {
+      "@id": "schema:RealEstateListing",
+      "@context": {
+        "property_id": "schema:identifier",
+        "listing_id": "realtor:listingId",
+        "status": "realtor:listingStatus",
+        "list_price": {
+          "@id": "schema:price",
+          "@type": "xsd:decimal"
+        },
+        "list_date": {
+          "@id": "schema:datePosted",
+          "@type": "xsd:dateTime"
+        },
+        "last_sold_price": {
+          "@id": "realtor:lastSoldPrice",
+          "@type": "xsd:decimal"
+        },
+        "last_sold_date": {
+          "@id": "realtor:lastSoldDate",
+          "@type": "xsd:date"
+        },
+        "listing_url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "beds": "schema:numberOfBedrooms",
+        "baths": "schema:numberOfBathroomsTotal",
+        "sqft": {
+          "@id": "schema:floorSize",
+          "@type": "xsd:integer"
+        },
+        "lot_sqft": {
+          "@id": "schema:lotSize",
+          "@type": "xsd:integer"
+        },
+        "year_built": {
+          "@id": "schema:yearBuilt",
+          "@type": "xsd:integer"
+        },
+        "property_type": "realtor:propertyType",
+        "description": "schema:description",
+        "photos": {
+          "@id": "schema:image",
+          "@container": "@set"
+        },
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Lead": {
+      "@id": "realtor:Lead",
+      "@context": {
+        "lead_id": "schema:identifier",
+        "role": "realtor:leadRole",
+        "source": "realtor:leadSource",
+        "message": "realtor:leadMessage",
+        "is_likely_to_transact": "realtor:isLikelyToTransact",
+        "probability_to_transact": {
+          "@id": "realtor:probabilityToTransact",
+          "@type": "xsd:decimal"
+        },
+        "timestamp": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Contact": {
+      "@id": "schema:Person",
+      "@context": {
+        "first_name": "schema:givenName",
+        "last_name": "schema:familyName",
+        "email": "schema:email",
+        "phone": "schema:telephone"
+      }
+    },
+
+    "Agent": {
+      "@id": "schema:RealEstateAgent",
+      "@context": {
+        "id": "schema:identifier",
+        "full_name": "schema:name",
+        "first_name": "schema:givenName",
+        "last_name": "schema:familyName",
+        "email": "schema:email",
+        "photo": {
+          "@id": "schema:image",
+          "@type": "@id"
+        },
+        "office": "schema:worksFor",
+        "area_served": {
+          "@id": "schema:areaServed",
+          "@container": "@set"
+        },
+        "recently_sold_count": "realtor:recentlySoldCount",
+        "for_sale_count": "realtor:forSaleCount"
+      }
+    },
+
+    "Location": {
+      "@id": "schema:Place",
+      "@context": {
+        "address": "schema:address",
+        "neighborhood_name": "realtor:neighborhoodName",
+        "latitude": {
+          "@id": "geo:lat",
+          "@type": "xsd:decimal"
+        },
+        "longitude": {
+          "@id": "geo:long",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+
+    "Address": {
+      "@id": "schema:PostalAddress",
+      "@context": {
+        "line": "schema:streetAddress",
+        "city": "schema:addressLocality",
+        "state_code": "schema:addressRegion",
+        "state": "schema:addressRegion",
+        "postal_code": "schema:postalCode",
+        "county": "realtor:county"
+      }
+    },
+
+    "School": {
+      "@id": "schema:School",
+      "@context": {
+        "name": "schema:name",
+        "education_levels": {
+          "@id": "realtor:educationLevels",
+          "@container": "@set"
+        },
+        "rating": "schema:aggregateRating",
+        "distance_in_miles": "realtor:distanceInMiles",
+        "funding_type": "realtor:fundingType"
+      }
+    },
+
+    "MortgageRate": {
+      "@id": "realtor:MortgageRate",
+      "@context": {
+        "loan_type": "realtor:loanType",
+        "rate": {
+          "@id": "realtor:interestRate",
+          "@type": "xsd:decimal"
+        },
+        "apr": {
+          "@id": "realtor:annualPercentageRate",
+          "@type": "xsd:decimal"
+        },
+        "last_updated": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}

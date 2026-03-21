@@ -1,0 +1,1020 @@
+openapi: 3.1.0
+info:
+  title: Realtor.com Property Data API
+  description: >-
+    The Realtor.com Property Data API provides programmatic access to real estate
+    listing data from Realtor.com, one of the largest property listing platforms
+    in the United States. It offers endpoints for searching properties by
+    location, price range, bedrooms, bathrooms, and other criteria, as well as
+    retrieving detailed property information including listing status, photos,
+    and neighborhood data. The API supports both for-sale and for-rent property
+    searches and provides access to school ratings, market trends, and comparable
+    property data that developers can use to build real estate applications and
+    analytics tools. The API is available through RapidAPI.
+  version: '2.0'
+  contact:
+    name: Realtor.com API Support
+    url: https://rapidapi.com/apidojo/api/realty-in-us
+  termsOfService: https://www.realtor.com/terms
+externalDocs:
+  description: Realtor.com Property Data API Documentation
+  url: https://rapidapi.com/apidojo/api/realty-in-us
+servers:
+  - url: https://realtor.p.rapidapi.com
+    description: RapidAPI Production Server
+tags:
+  - name: Locations
+    description: >-
+      Endpoints for searching and auto-completing location names, addresses,
+      and geographic areas used as inputs for property searches.
+  - name: Properties
+    description: >-
+      Endpoints for searching, listing, and retrieving detailed property
+      information including for-sale, for-rent, and recently sold listings.
+  - name: Agents
+    description: >-
+      Endpoints for searching and retrieving information about real estate
+      agents and brokers.
+  - name: Finance
+    description: >-
+      Endpoints for retrieving mortgage rates and financial data relevant to
+      real estate transactions.
+security:
+  - rapidApiKey: []
+paths:
+  /locations/v2/auto-complete:
+    get:
+      operationId: autoCompleteLocations
+      summary: Auto-complete locations
+      description: >-
+        Returns location suggestions based on a partial input string. Use this
+        endpoint to help users find specific addresses, cities, zip codes,
+        neighborhoods, or schools by providing type-ahead search functionality.
+        The returned location identifiers can be used as inputs for property
+        search endpoints.
+      tags:
+        - Locations
+      parameters:
+        - $ref: '#/components/parameters/locationInput'
+      responses:
+        '200':
+          description: Successfully returned location suggestions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationAutoCompleteResponse'
+        '400':
+          description: Bad request due to invalid or missing input parameter
+        '401':
+          description: Unauthorized due to missing or invalid API key
+        '429':
+          description: Rate limit exceeded
+  /properties/v3/list:
+    post:
+      operationId: listProperties
+      summary: List properties
+      description: >-
+        Searches and returns a list of properties matching the specified
+        criteria. Supports filtering by status (for sale, for rent, sold),
+        location, price range, property type, number of bedrooms and bathrooms,
+        lot size, and other attributes. Results can be sorted and paginated.
+      tags:
+        - Properties
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyListRequest'
+      responses:
+        '200':
+          description: Successfully returned property listings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyListResponse'
+        '400':
+          description: Bad request due to invalid search parameters
+        '401':
+          description: Unauthorized due to missing or invalid API key
+        '429':
+          description: Rate limit exceeded
+  /properties/v2/detail:
+    get:
+      operationId: getPropertyDetail
+      summary: Get property detail
+      description: >-
+        Returns comprehensive details for a specific property identified by its
+        property ID. Includes listing information, price history, tax records,
+        property features, photos, neighborhood data, nearby schools, and
+        comparable properties.
+      tags:
+        - Properties
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+      responses:
+        '200':
+          description: Successfully returned property details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyDetailResponse'
+        '400':
+          description: Bad request due to invalid property ID
+        '401':
+          description: Unauthorized due to missing or invalid API key
+        '404':
+          description: Property not found
+        '429':
+          description: Rate limit exceeded
+  /properties/v2/list-by-mls:
+    get:
+      operationId: listPropertiesByMls
+      summary: List properties by MLS
+      description: >-
+        Returns properties matching specific MLS (Multiple Listing Service)
+        identifiers. Use this endpoint when you have MLS IDs and need to
+        retrieve the corresponding property listings.
+      tags:
+        - Properties
+      parameters:
+        - name: mls_id
+          in: query
+          required: true
+          description: >-
+            The MLS identifier to search for. Can be a single MLS ID or
+            a comma-separated list of MLS IDs.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully returned properties matching the MLS ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyListResponse'
+        '400':
+          description: Bad request due to invalid MLS ID
+        '401':
+          description: Unauthorized due to missing or invalid API key
+        '429':
+          description: Rate limit exceeded
+  /properties/v2/list-similar-homes:
+    get:
+      operationId: listSimilarHomes
+      summary: List similar homes for sale
+      description: >-
+        Returns properties similar to a specified property that are currently
+        listed for sale. Useful for providing comparable listings and helping
+        users discover alternative options in the same area and price range.
+      tags:
+        - Properties
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+      responses:
+        '200':
+          description: Successfully returned similar properties
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyListResponse'
+        '400':
+          description: Bad request due to invalid property ID
+        '401':
+          description: Unauthorized due to missing or invalid API key
+        '429':
+          description: Rate limit exceeded
+  /properties/v2/list-similar-rental-homes:
+    get:
+      operationId: listSimilarRentalHomes
+      summary: List similar rental homes
+      description: >-
+        Returns rental properties similar to a specified property. Helps renters
+        discover alternative rental options in the same area with comparable
+        features and pricing.
+      tags:
+        - Properties
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+      responses:
+        '200':
+          description: Successfully returned similar rental properties
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyListResponse'
+        '400':
+          description: Bad request due to invalid property ID
+        '401':
+          description: Unauthorized due to missing or invalid API key
+        '429':
+          description: Rate limit exceeded
+  /agents/list:
+    get:
+      operationId: listAgents
+      summary: List agents
+      description: >-
+        Searches for real estate agents by location, name, or specialty.
+        Returns agent profiles including contact information, listings count,
+        ratings, and areas of expertise.
+      tags:
+        - Agents
+      parameters:
+        - name: postal_code
+          in: query
+          required: false
+          description: >-
+            Postal code to search for agents in a specific area.
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          description: >-
+            Agent name to search for.
+          schema:
+            type: string
+        - name: offset
+          in: query
+          required: false
+          description: >-
+            Number of results to skip for pagination.
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          description: >-
+            Maximum number of results to return.
+          schema:
+            type: integer
+            default: 20
+            maximum: 50
+      responses:
+        '200':
+          description: Successfully returned agent listings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentListResponse'
+        '400':
+          description: Bad request due to invalid parameters
+        '401':
+          description: Unauthorized due to missing or invalid API key
+        '429':
+          description: Rate limit exceeded
+  /finance/rates:
+    get:
+      operationId: getMortgageRates
+      summary: Get mortgage rates
+      description: >-
+        Returns current mortgage rate information including rates for various
+        loan types such as 30-year fixed, 15-year fixed, and adjustable rate
+        mortgages. Useful for providing financial context alongside property
+        listings.
+      tags:
+        - Finance
+      responses:
+        '200':
+          description: Successfully returned mortgage rate data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MortgageRatesResponse'
+        '401':
+          description: Unauthorized due to missing or invalid API key
+        '429':
+          description: Rate limit exceeded
+components:
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: >-
+        API key provided by RapidAPI for authenticating requests.
+  parameters:
+    locationInput:
+      name: input
+      in: query
+      required: true
+      description: >-
+        Partial location string for auto-completion. Can be a city name,
+        zip code, address, or neighborhood name.
+      schema:
+        type: string
+        minLength: 1
+    propertyId:
+      name: property_id
+      in: query
+      required: true
+      description: >-
+        Unique property identifier returned from search or list endpoints.
+      schema:
+        type: string
+  schemas:
+    LocationAutoCompleteResponse:
+      type: object
+      description: >-
+        Response containing location auto-complete suggestions.
+      properties:
+        status:
+          type: integer
+          description: >-
+            HTTP status code of the response.
+        data:
+          type: object
+          description: >-
+            Container for auto-complete results.
+          properties:
+            autocomplete:
+              type: array
+              description: >-
+                List of location suggestions matching the input.
+              items:
+                $ref: '#/components/schemas/LocationSuggestion'
+    LocationSuggestion:
+      type: object
+      description: >-
+        A single location suggestion with identifying information.
+      properties:
+        area_type:
+          type: string
+          description: >-
+            Type of area such as city, address, postal_code, neighborhood,
+            school, or county.
+        _id:
+          type: string
+          description: >-
+            Unique identifier for the location.
+        _score:
+          type: number
+          description: >-
+            Relevance score for the suggestion.
+        city:
+          type: string
+          description: >-
+            City name associated with the location.
+        state_code:
+          type: string
+          description: >-
+            Two-letter state code.
+        postal_code:
+          type: string
+          description: >-
+            Five-digit postal code.
+        country:
+          type: string
+          description: >-
+            Country code, typically US.
+    PropertyListRequest:
+      type: object
+      description: >-
+        Request body for searching and filtering property listings.
+      properties:
+        status:
+          type: array
+          description: >-
+            Listing status filter. Common values include for_sale, for_rent,
+            recently_sold, and ready_to_build.
+          items:
+            type: string
+            enum:
+              - for_sale
+              - for_rent
+              - recently_sold
+              - ready_to_build
+        postal_code:
+          type: string
+          description: >-
+            Five-digit postal code to search within.
+        city:
+          type: string
+          description: >-
+            City name to search within.
+        state_code:
+          type: string
+          description: >-
+            Two-letter state code to search within.
+        limit:
+          type: integer
+          description: >-
+            Maximum number of results to return per page.
+          default: 20
+          maximum: 200
+        offset:
+          type: integer
+          description: >-
+            Number of results to skip for pagination.
+          default: 0
+        sort:
+          type: object
+          description: >-
+            Sorting configuration for results.
+          properties:
+            direction:
+              type: string
+              description: >-
+                Sort direction.
+              enum:
+                - asc
+                - desc
+            field:
+              type: string
+              description: >-
+                Field to sort by such as list_date, list_price, or sqft.
+        price_min:
+          type: integer
+          description: >-
+            Minimum listing price filter in dollars.
+        price_max:
+          type: integer
+          description: >-
+            Maximum listing price filter in dollars.
+        beds_min:
+          type: integer
+          description: >-
+            Minimum number of bedrooms filter.
+        beds_max:
+          type: integer
+          description: >-
+            Maximum number of bedrooms filter.
+        baths_min:
+          type: integer
+          description: >-
+            Minimum number of bathrooms filter.
+        baths_max:
+          type: integer
+          description: >-
+            Maximum number of bathrooms filter.
+        sqft_min:
+          type: integer
+          description: >-
+            Minimum square footage filter.
+        sqft_max:
+          type: integer
+          description: >-
+            Maximum square footage filter.
+        lot_sqft_min:
+          type: integer
+          description: >-
+            Minimum lot size in square feet filter.
+        lot_sqft_max:
+          type: integer
+          description: >-
+            Maximum lot size in square feet filter.
+        prop_type:
+          type: array
+          description: >-
+            Property type filter.
+          items:
+            type: string
+            enum:
+              - single_family
+              - multi_family
+              - condo
+              - townhome
+              - mobile
+              - land
+              - farm
+        age_min:
+          type: integer
+          description: >-
+            Minimum year built filter.
+        age_max:
+          type: integer
+          description: >-
+            Maximum year built filter.
+    PropertyListResponse:
+      type: object
+      description: >-
+        Response containing a list of property results with pagination metadata.
+      properties:
+        status:
+          type: integer
+          description: >-
+            HTTP status code of the response.
+        data:
+          type: object
+          description: >-
+            Container for property listing results.
+          properties:
+            home_search:
+              type: object
+              description: >-
+                Search results container.
+              properties:
+                count:
+                  type: integer
+                  description: >-
+                    Total number of matching properties.
+                total:
+                  type: integer
+                  description: >-
+                    Total results available.
+                results:
+                  type: array
+                  description: >-
+                    Array of property summary objects.
+                  items:
+                    $ref: '#/components/schemas/PropertySummary'
+    PropertySummary:
+      type: object
+      description: >-
+        Summary information about a property listing.
+      properties:
+        property_id:
+          type: string
+          description: >-
+            Unique identifier for the property.
+        listing_id:
+          type: string
+          description: >-
+            Unique identifier for the listing.
+        status:
+          type: string
+          description: >-
+            Current listing status such as for_sale, for_rent, or sold.
+        list_price:
+          type: number
+          description: >-
+            Current listing price in dollars.
+        list_date:
+          type: string
+          format: date-time
+          description: >-
+            Date the property was listed.
+        last_sold_price:
+          type: number
+          description: >-
+            Price at which the property last sold.
+        last_sold_date:
+          type: string
+          format: date
+          description: >-
+            Date the property last sold.
+        description:
+          type: object
+          description: >-
+            Property description details.
+          properties:
+            beds:
+              type: integer
+              description: >-
+                Number of bedrooms.
+            baths:
+              type: integer
+              description: >-
+                Number of bathrooms.
+            sqft:
+              type: integer
+              description: >-
+                Interior square footage.
+            lot_sqft:
+              type: integer
+              description: >-
+                Lot size in square feet.
+            type:
+              type: string
+              description: >-
+                Property type such as single_family, condo, or townhome.
+            year_built:
+              type: integer
+              description: >-
+                Year the property was constructed.
+            garage:
+              type: integer
+              description: >-
+                Number of garage spaces.
+            stories:
+              type: integer
+              description: >-
+                Number of stories.
+        location:
+          $ref: '#/components/schemas/Location'
+        photos:
+          type: array
+          description: >-
+            Array of property photo URLs.
+          items:
+            type: object
+            properties:
+              href:
+                type: string
+                format: uri
+                description: >-
+                  URL of the property photo.
+        tags:
+          type: array
+          description: >-
+            Tags describing property features.
+          items:
+            type: string
+    Location:
+      type: object
+      description: >-
+        Geographic location information for a property.
+      properties:
+        address:
+          type: object
+          description: >-
+            Structured address information.
+          properties:
+            line:
+              type: string
+              description: >-
+                Street address line.
+            city:
+              type: string
+              description: >-
+                City name.
+            state_code:
+              type: string
+              description: >-
+                Two-letter state abbreviation.
+            state:
+              type: string
+              description: >-
+                Full state name.
+            postal_code:
+              type: string
+              description: >-
+                Five-digit zip code.
+            county:
+              type: string
+              description: >-
+                County name.
+            coordinate:
+              type: object
+              description: >-
+                Geographic coordinates.
+              properties:
+                lat:
+                  type: number
+                  description: >-
+                    Latitude.
+                lon:
+                  type: number
+                  description: >-
+                    Longitude.
+        neighborhood_name:
+          type: string
+          description: >-
+            Name of the neighborhood.
+    PropertyDetailResponse:
+      type: object
+      description: >-
+        Response containing comprehensive details about a specific property.
+      properties:
+        status:
+          type: integer
+          description: >-
+            HTTP status code of the response.
+        data:
+          type: object
+          description: >-
+            Container for property detail data.
+          properties:
+            property_detail:
+              type: object
+              description: >-
+                Full property detail object.
+              properties:
+                property_id:
+                  type: string
+                  description: >-
+                    Unique identifier for the property.
+                listing_id:
+                  type: string
+                  description: >-
+                    Unique identifier for the listing.
+                status:
+                  type: string
+                  description: >-
+                    Current listing status.
+                list_price:
+                  type: number
+                  description: >-
+                    Current listing price in dollars.
+                list_date:
+                  type: string
+                  format: date-time
+                  description: >-
+                    Date the property was listed.
+                description:
+                  $ref: '#/components/schemas/PropertyDescription'
+                location:
+                  $ref: '#/components/schemas/Location'
+                photos:
+                  type: array
+                  description: >-
+                    Array of property photo objects.
+                  items:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        format: uri
+                        description: >-
+                          URL of the property photo.
+                      description:
+                        type: string
+                        description: >-
+                          Caption or description of the photo.
+                price_history:
+                  type: array
+                  description: >-
+                    Historical price changes for the property.
+                  items:
+                    $ref: '#/components/schemas/PriceHistoryEntry'
+                tax_history:
+                  type: array
+                  description: >-
+                    Property tax assessment history.
+                  items:
+                    $ref: '#/components/schemas/TaxHistoryEntry'
+                schools:
+                  type: array
+                  description: >-
+                    Nearby schools with ratings and distance.
+                  items:
+                    $ref: '#/components/schemas/NearbySchool'
+                mls:
+                  type: object
+                  description: >-
+                    MLS listing information.
+                  properties:
+                    id:
+                      type: string
+                      description: >-
+                        MLS listing identifier.
+                    name:
+                      type: string
+                      description: >-
+                        MLS name.
+                    abbreviation:
+                      type: string
+                      description: >-
+                        MLS abbreviation.
+    PropertyDescription:
+      type: object
+      description: >-
+        Detailed property description and features.
+      properties:
+        beds:
+          type: integer
+          description: >-
+            Number of bedrooms.
+        baths:
+          type: integer
+          description: >-
+            Total number of bathrooms.
+        baths_full:
+          type: integer
+          description: >-
+            Number of full bathrooms.
+        baths_half:
+          type: integer
+          description: >-
+            Number of half bathrooms.
+        sqft:
+          type: integer
+          description: >-
+            Interior living area in square feet.
+        lot_sqft:
+          type: integer
+          description: >-
+            Lot area in square feet.
+        type:
+          type: string
+          description: >-
+            Property type such as single_family, condo, or townhome.
+        year_built:
+          type: integer
+          description: >-
+            Year the property was built.
+        garage:
+          type: integer
+          description: >-
+            Number of garage spaces.
+        stories:
+          type: integer
+          description: >-
+            Number of stories in the property.
+        text:
+          type: string
+          description: >-
+            Free-text description of the property from the listing.
+    PriceHistoryEntry:
+      type: object
+      description: >-
+        A single entry in the property price history.
+      properties:
+        date:
+          type: string
+          format: date
+          description: >-
+            Date of the price event.
+        price:
+          type: number
+          description: >-
+            Price in dollars at the time of the event.
+        event:
+          type: string
+          description: >-
+            Type of price event such as listed, sold, or price_changed.
+        source:
+          type: string
+          description: >-
+            Data source for the price record.
+    TaxHistoryEntry:
+      type: object
+      description: >-
+        A single entry in the property tax assessment history.
+      properties:
+        year:
+          type: integer
+          description: >-
+            Tax assessment year.
+        tax:
+          type: number
+          description: >-
+            Annual property tax amount in dollars.
+        assessment:
+          type: object
+          description: >-
+            Property tax assessment details.
+          properties:
+            total:
+              type: number
+              description: >-
+                Total assessed value in dollars.
+            land:
+              type: number
+              description: >-
+                Assessed land value in dollars.
+            building:
+              type: number
+              description: >-
+                Assessed building value in dollars.
+    NearbySchool:
+      type: object
+      description: >-
+        Information about a school near the property.
+      properties:
+        name:
+          type: string
+          description: >-
+            Name of the school.
+        education_levels:
+          type: array
+          description: >-
+            Grade levels served such as elementary, middle, or high.
+          items:
+            type: string
+        rating:
+          type: integer
+          description: >-
+            School rating on a scale of 1 to 10.
+          minimum: 1
+          maximum: 10
+        distance_in_miles:
+          type: number
+          description: >-
+            Distance from the property in miles.
+        funding_type:
+          type: string
+          description: >-
+            Funding type such as public or private.
+    AgentListResponse:
+      type: object
+      description: >-
+        Response containing a list of real estate agents.
+      properties:
+        matching_rows:
+          type: integer
+          description: >-
+            Total number of agents matching the search criteria.
+        agents:
+          type: array
+          description: >-
+            Array of agent profile objects.
+          items:
+            $ref: '#/components/schemas/Agent'
+    Agent:
+      type: object
+      description: >-
+        Real estate agent profile information.
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique agent identifier.
+        full_name:
+          type: string
+          description: >-
+            Full name of the agent.
+        first_name:
+          type: string
+          description: >-
+            First name of the agent.
+        last_name:
+          type: string
+          description: >-
+            Last name of the agent.
+        office:
+          type: object
+          description: >-
+            Agent office information.
+          properties:
+            name:
+              type: string
+              description: >-
+                Office or brokerage name.
+            phone:
+              type: string
+              description: >-
+                Office phone number.
+        phones:
+          type: array
+          description: >-
+            Agent phone numbers.
+          items:
+            type: object
+            properties:
+              number:
+                type: string
+                description: >-
+                  Phone number.
+              type:
+                type: string
+                description: >-
+                  Phone type such as mobile, office, or fax.
+        email:
+          type: string
+          format: email
+          description: >-
+            Agent email address.
+        photo:
+          type: string
+          format: uri
+          description: >-
+            URL of agent profile photo.
+        recently_sold_count:
+          type: integer
+          description: >-
+            Number of properties recently sold by the agent.
+        for_sale_count:
+          type: integer
+          description: >-
+            Number of active for-sale listings.
+        area_served:
+          type: array
+          description: >-
+            Areas where the agent operates.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: >-
+                  Area name.
+              state_code:
+                type: string
+                description: >-
+                  Two-letter state code.
+    MortgageRatesResponse:
+      type: object
+      description: >-
+        Response containing current mortgage rate information.
+      properties:
+        rates:
+          type: array
+          description: >-
+            Array of mortgage rate objects for different loan types.
+          items:
+            $ref: '#/components/schemas/MortgageRate'
+    MortgageRate:
+      type: object
+      description: >-
+        Mortgage rate information for a specific loan type.
+      properties:
+        loan_type:
+          type: string
+          description: >-
+            Type of mortgage loan such as fixed_30_year, fixed_15_year,
+            or arm_5_1.
+        rate:
+          type: number
+          description: >-
+            Current interest rate as a percentage.
+        apr:
+          type: number
+          description: >-
+            Annual percentage rate including fees.
+        last_updated:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the rate was last updated.

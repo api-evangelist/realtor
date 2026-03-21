@@ -1,0 +1,336 @@
+asyncapi: 2.6.0
+info:
+  title: Realtor.com Lead Delivery Events
+  description: >-
+    The Realtor.com Lead Delivery API is an end-to-end integration layer that
+    delivers real estate leads directly from Realtor.com to third-party CRM
+    systems. It provides faster and more secure lead delivery compared to
+    traditional email-based methods, with consistent formatting and additional
+    data fields. The API is available to agents, brokers, and offices with
+    Realtor.com dashboard access and serves as a complement to required email
+    lead delivery, ensuring redundancy while providing enhanced data for
+    automated lead management workflows.
+  version: '1.0'
+  contact:
+    name: Realtor.com Support
+    url: https://www.realtor.com/marketing/connections/
+servers:
+  crmEndpoint:
+    url: '{crmEndpointUrl}'
+    protocol: https
+    description: >-
+      CRM endpoint URL configured by the customer in the Realtor.com dashboard
+      under Lead Settings to receive lead delivery POST requests.
+    variables:
+      crmEndpointUrl:
+        description: >-
+          The URL of the CRM endpoint that will receive lead data.
+    security:
+      - apiKey: []
+channels:
+  /lead-delivery:
+    description: >-
+      Channel for receiving real-time lead deliveries from Realtor.com. Leads
+      are pushed via HTTPS POST to the configured CRM endpoint when a consumer
+      expresses interest through Realtor.com. This is the general lead delivery
+      channel that complements the required email-based lead delivery and
+      provides enhanced data fields not available in email.
+    publish:
+      operationId: receiveLeadDelivery
+      summary: Receive a lead delivery
+      description: >-
+        Delivers a lead from Realtor.com to the configured CRM endpoint. The
+        lead includes contact information, property details, and additional
+        metadata such as MLS information, geographic coordinates, and
+        transaction likelihood scores. All transmissions use HTTPS encryption
+        and support optional digital signature verification.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/StandardLead'
+          - $ref: '#/components/messages/EnhancedLead'
+components:
+  securitySchemes:
+    apiKey:
+      type: httpApiKey
+      name: X-API-Key
+      in: header
+      description: >-
+        API key configured in the Realtor.com dashboard for authenticating
+        lead delivery requests to the CRM endpoint.
+  messages:
+    StandardLead:
+      name: StandardLead
+      title: Standard Lead
+      summary: >-
+        A standard lead delivery containing basic contact and property
+        information equivalent to what is available via email delivery.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/StandardLeadPayload'
+    EnhancedLead:
+      name: EnhancedLead
+      title: Enhanced Lead
+      summary: >-
+        An enhanced lead delivery with additional fields including MLS data,
+        geographic coordinates, listing agent information, and transaction
+        probability scores not available through email delivery.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EnhancedLeadPayload'
+  schemas:
+    StandardLeadPayload:
+      type: object
+      description: >-
+        Standard lead payload with basic contact and property information.
+      required:
+        - lead_id
+        - contact
+        - timestamp
+      properties:
+        lead_id:
+          type: string
+          description: >-
+            Unique identifier for the lead.
+        contact:
+          type: object
+          description: >-
+            Contact information for the lead.
+          required:
+            - email
+          properties:
+            first_name:
+              type: string
+              description: >-
+                First name of the lead.
+            last_name:
+              type: string
+              description: >-
+                Last name of the lead.
+            email:
+              type: string
+              format: email
+              description: >-
+                Email address of the lead.
+            phone:
+              type: string
+              description: >-
+                Phone number of the lead.
+        property:
+          type: object
+          description: >-
+            Basic property information the lead expressed interest in.
+          properties:
+            address:
+              type: string
+              description: >-
+                Full street address of the property.
+            city:
+              type: string
+              description: >-
+                City name.
+            state:
+              type: string
+              description: >-
+                State abbreviation.
+            zip_code:
+              type: string
+              description: >-
+                Five-digit ZIP code.
+            list_price:
+              type: number
+              description: >-
+                Listing price in dollars.
+            beds:
+              type: integer
+              description: >-
+                Number of bedrooms.
+            baths:
+              type: integer
+              description: >-
+                Number of bathrooms.
+        message:
+          type: string
+          description: >-
+            Optional message from the consumer.
+        source:
+          type: string
+          description: >-
+            Source of the lead on Realtor.com.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            ISO 8601 timestamp when the lead was generated.
+    EnhancedLeadPayload:
+      type: object
+      description: >-
+        Enhanced lead payload with additional fields beyond standard email
+        delivery including MLS data, coordinates, and transaction scores.
+      required:
+        - lead_id
+        - contact
+        - timestamp
+      properties:
+        lead_id:
+          type: string
+          description: >-
+            Unique identifier for the lead.
+        role:
+          type: string
+          description: >-
+            Role of the lead such as buyer or seller.
+          enum:
+            - buyer
+            - seller
+        contact:
+          type: object
+          description: >-
+            Contact information for the lead.
+          required:
+            - email
+          properties:
+            first_name:
+              type: string
+              description: >-
+                First name of the lead.
+            last_name:
+              type: string
+              description: >-
+                Last name of the lead.
+            email:
+              type: string
+              format: email
+              description: >-
+                Email address of the lead.
+            phone:
+              type: string
+              description: >-
+                Phone number of the lead.
+        property:
+          type: object
+          description: >-
+            Enhanced property information with additional data fields.
+          properties:
+            listing_url:
+              type: string
+              format: uri
+              description: >-
+                URL of the property listing on Realtor.com.
+            address:
+              type: string
+              description: >-
+                Full street address of the property.
+            city:
+              type: string
+              description: >-
+                City name.
+            state:
+              type: string
+              description: >-
+                State abbreviation.
+            zip_code:
+              type: string
+              description: >-
+                Five-digit ZIP code.
+            latitude:
+              type: number
+              description: >-
+                Latitude coordinate of the property.
+            longitude:
+              type: number
+              description: >-
+                Longitude coordinate of the property.
+            mls_id:
+              type: string
+              description: >-
+                MLS listing identifier.
+            mls_name:
+              type: string
+              description: >-
+                Name of the MLS that holds the listing.
+            listing_status:
+              type: string
+              description: >-
+                Current listing status such as active, pending, or sold.
+            list_price:
+              type: number
+              description: >-
+                Listing price in dollars.
+            beds:
+              type: integer
+              description: >-
+                Number of bedrooms.
+            baths:
+              type: integer
+              description: >-
+                Number of bathrooms.
+            sqft:
+              type: integer
+              description: >-
+                Interior square footage.
+            active_days_on_market:
+              type: integer
+              description: >-
+                Number of days the property has been actively listed.
+        listing_agent:
+          type: object
+          description: >-
+            Listing agent contact details.
+          properties:
+            name:
+              type: string
+              description: >-
+                Full name of the listing agent.
+            email:
+              type: string
+              format: email
+              description: >-
+                Email address of the listing agent.
+            phone:
+              type: string
+              description: >-
+                Phone number of the listing agent.
+        finance_info:
+          type: object
+          description: >-
+            Financial information provided by the lead.
+          properties:
+            pre_approved:
+              type: boolean
+              description: >-
+                Whether the lead is pre-approved for financing.
+            budget_min:
+              type: number
+              description: >-
+                Minimum budget in dollars.
+            budget_max:
+              type: number
+              description: >-
+                Maximum budget in dollars.
+        is_likely_to_transact:
+          type: boolean
+          description: >-
+            Indicator of whether the lead is likely to complete a transaction.
+        probability_to_transact:
+          type: number
+          description: >-
+            Probability score from 0 to 1 indicating transaction likelihood.
+          minimum: 0
+          maximum: 1
+        message:
+          type: string
+          description: >-
+            Optional message from the consumer.
+        source:
+          type: string
+          description: >-
+            Source of the lead on Realtor.com.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            ISO 8601 timestamp when the lead was generated.
+        digital_signature:
+          type: string
+          description: >-
+            Optional digital signature for verifying payload integrity.

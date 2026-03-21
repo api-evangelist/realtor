@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://realtor.com/schemas/realtor/property.json",
+  "title": "Realtor.com Property",
+  "description": "Schema representing a real estate property listing from Realtor.com. Captures listing details, physical characteristics, location, pricing, MLS information, tax and price history, and nearby school data.",
+  "type": "object",
+  "required": ["property_id"],
+  "properties": {
+    "property_id": {
+      "type": "string",
+      "description": "Unique identifier for the property on Realtor.com."
+    },
+    "listing_id": {
+      "type": "string",
+      "description": "Unique identifier for the specific listing of the property."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current listing status of the property.",
+      "enum": ["for_sale", "for_rent", "recently_sold", "off_market", "ready_to_build"]
+    },
+    "list_price": {
+      "type": "number",
+      "description": "Current listing price in US dollars.",
+      "minimum": 0
+    },
+    "list_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 date-time when the property was listed."
+    },
+    "last_sold_price": {
+      "type": "number",
+      "description": "Price at which the property last sold in US dollars.",
+      "minimum": 0
+    },
+    "last_sold_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when the property last sold."
+    },
+    "description": {
+      "$ref": "#/$defs/PropertyDescription"
+    },
+    "location": {
+      "$ref": "#/$defs/Location"
+    },
+    "photos": {
+      "type": "array",
+      "description": "Array of property photo objects.",
+      "items": {
+        "$ref": "#/$defs/Photo"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags describing property features such as garage, pool, or waterfront.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mls": {
+      "$ref": "#/$defs/MlsInfo"
+    },
+    "price_history": {
+      "type": "array",
+      "description": "Historical price changes for the property.",
+      "items": {
+        "$ref": "#/$defs/PriceHistoryEntry"
+      }
+    },
+    "tax_history": {
+      "type": "array",
+      "description": "Property tax assessment history.",
+      "items": {
+        "$ref": "#/$defs/TaxHistoryEntry"
+      }
+    },
+    "schools": {
+      "type": "array",
+      "description": "Nearby schools with ratings and distance information.",
+      "items": {
+        "$ref": "#/$defs/NearbySchool"
+      }
+    }
+  },
+  "$defs": {
+    "PropertyDescription": {
+      "type": "object",
+      "description": "Detailed property characteristics and features.",
+      "properties": {
+        "beds": {
+          "type": "integer",
+          "description": "Number of bedrooms.",
+          "minimum": 0
+        },
+        "baths": {
+          "type": "integer",
+          "description": "Total number of bathrooms.",
+          "minimum": 0
+        },
+        "baths_full": {
+          "type": "integer",
+          "description": "Number of full bathrooms.",
+          "minimum": 0
+        },
+        "baths_half": {
+          "type": "integer",
+          "description": "Number of half bathrooms.",
+          "minimum": 0
+        },
+        "sqft": {
+          "type": "integer",
+          "description": "Interior living area in square feet.",
+          "minimum": 0
+        },
+        "lot_sqft": {
+          "type": "integer",
+          "description": "Lot area in square feet.",
+          "minimum": 0
+        },
+        "type": {
+          "type": "string",
+          "description": "Property type classification.",
+          "enum": ["single_family", "multi_family", "condo", "townhome", "mobile", "land", "farm"]
+        },
+        "year_built": {
+          "type": "integer",
+          "description": "Year the property was constructed.",
+          "minimum": 1600,
+          "maximum": 2030
+        },
+        "garage": {
+          "type": "integer",
+          "description": "Number of garage spaces.",
+          "minimum": 0
+        },
+        "stories": {
+          "type": "integer",
+          "description": "Number of stories in the property.",
+          "minimum": 0
+        },
+        "text": {
+          "type": "string",
+          "description": "Free-text description of the property from the listing."
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "description": "Geographic location and address information for the property.",
+      "properties": {
+        "address": {
+          "type": "object",
+          "description": "Structured address components.",
+          "properties": {
+            "line": {
+              "type": "string",
+              "description": "Street address line."
+            },
+            "city": {
+              "type": "string",
+              "description": "City name."
+            },
+            "state_code": {
+              "type": "string",
+              "description": "Two-letter state abbreviation.",
+              "pattern": "^[A-Z]{2}$",
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "state": {
+              "type": "string",
+              "description": "Full state name."
+            },
+            "postal_code": {
+              "type": "string",
+              "description": "Five-digit ZIP code.",
+              "pattern": "^[0-9]{5}$"
+            },
+            "county": {
+              "type": "string",
+              "description": "County name."
+            },
+            "coordinate": {
+              "type": "object",
+              "description": "Geographic coordinates.",
+              "properties": {
+                "lat": {
+                  "type": "number",
+                  "description": "Latitude.",
+                  "minimum": -90,
+                  "maximum": 90
+                },
+                "lon": {
+                  "type": "number",
+                  "description": "Longitude.",
+                  "minimum": -180,
+                  "maximum": 180
+                }
+              }
+            }
+          }
+        },
+        "neighborhood_name": {
+          "type": "string",
+          "description": "Name of the neighborhood."
+        }
+      }
+    },
+    "Photo": {
+      "type": "object",
+      "description": "A property photo.",
+      "properties": {
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the property photo."
+        },
+        "description": {
+          "type": "string",
+          "description": "Caption or description of the photo."
+        }
+      }
+    },
+    "MlsInfo": {
+      "type": "object",
+      "description": "MLS listing information.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "MLS listing identifier."
+        },
+        "name": {
+          "type": "string",
+          "description": "MLS name."
+        },
+        "abbreviation": {
+          "type": "string",
+          "description": "MLS abbreviation."
+        }
+      }
+    },
+    "PriceHistoryEntry": {
+      "type": "object",
+      "description": "A single entry in the property price history.",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of the price event."
+        },
+        "price": {
+          "type": "number",
+          "description": "Price in US dollars at the time of the event.",
+          "minimum": 0
+        },
+        "event": {
+          "type": "string",
+          "description": "Type of price event.",
+          "enum": ["listed", "sold", "price_changed", "delisted", "pending"]
+        },
+        "source": {
+          "type": "string",
+          "description": "Data source for the price record."
+        }
+      }
+    },
+    "TaxHistoryEntry": {
+      "type": "object",
+      "description": "A single entry in the property tax assessment history.",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "description": "Tax assessment year."
+        },
+        "tax": {
+          "type": "number",
+          "description": "Annual property tax amount in US dollars.",
+          "minimum": 0
+        },
+        "assessment": {
+          "type": "object",
+          "description": "Property tax assessment breakdown.",
+          "properties": {
+            "total": {
+              "type": "number",
+              "description": "Total assessed value in US dollars.",
+              "minimum": 0
+            },
+            "land": {
+              "type": "number",
+              "description": "Assessed land value in US dollars.",
+              "minimum": 0
+            },
+            "building": {
+              "type": "number",
+              "description": "Assessed building value in US dollars.",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "NearbySchool": {
+      "type": "object",
+      "description": "Information about a school near the property.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the school."
+        },
+        "education_levels": {
+          "type": "array",
+          "description": "Grade levels served such as elementary, middle, or high.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rating": {
+          "type": "integer",
+          "description": "School rating on a scale of 1 to 10.",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "distance_in_miles": {
+          "type": "number",
+          "description": "Distance from the property in miles.",
+          "minimum": 0
+        },
+        "funding_type": {
+          "type": "string",
+          "description": "Funding type of the school.",
+          "enum": ["public", "private", "charter"]
+        }
+      }
+    }
+  }
+}
