@@ -1,5 +1,6 @@
 aid: realtor
-url: https://raw.githubusercontent.com/api-evangelist/realtor/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/realtor/refs/heads/main/apis.yml
 modified: '2026-03-20'
 apis:
   - aid: realtor:connections-plus-api
@@ -10,7 +11,8 @@ apis:
       - CRM
       - Agents
       - Brokers
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://www.realtor.com/marketing/connections/
     properties:
@@ -19,14 +21,12 @@ apis:
       - url: asyncapi/realtor-connections-plus-asyncapi.yml
         type: AsyncAPI
     description: >-
-      The Realtor.com Connections Plus API provides a direct connection between
-      the Realtor.com lead delivery system and supporting CRM platforms. It
-      enables real estate agents, brokers, and offices to receive buyer and
-      seller leads in real time via API rather than email. The API delivers
-      richer lead data including listing URLs, geographic coordinates, dates,
-      and MLS information that are not available through standard email
-      delivery. It uses HTTPS for secure transmission and supports optional
-      digital signatures for data verification.
+      The Realtor.com Connections Plus API provides a direct connection between the
+      Realtor.com lead delivery system and supporting CRM platforms. It enables real
+      estate agents, brokers, and offices to receive buyer and seller leads in real
+      time via API rather than email. The API delivers richer lead data including
+      listing URLs, geographic coordinates, dates, and MLS information that are not
+      available through standard email delivery.
   - aid: realtor:lead-delivery-api
     name: Realtor.com Lead Delivery API
     tags:
@@ -35,7 +35,8 @@ apis:
       - Delivery
       - Notifications
       - CRM Integration
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://www.realtor.com/marketing/connections/
     properties:
@@ -44,14 +45,10 @@ apis:
       - url: asyncapi/realtor-lead-delivery-asyncapi.yml
         type: AsyncAPI
     description: >-
-      The Realtor.com Lead Delivery API is an end-to-end integration layer
-      that delivers real estate leads directly from Realtor.com to third-party
-      CRM systems. It provides faster and more secure lead delivery compared
-      to traditional email-based methods, with consistent formatting and
-      additional data fields. The API is available to agents, brokers, and
-      offices with Realtor.com dashboard access and serves as a complement to
-      required email lead delivery, ensuring redundancy while providing
-      enhanced data for automated lead management workflows.
+      The Realtor.com Lead Delivery API is an end-to-end integration layer that delivers
+      real estate leads directly from Realtor.com to third-party CRM systems. It provides
+      faster and more secure lead delivery compared to traditional email-based methods,
+      with consistent formatting and additional data fields.
   - aid: realtor:property-data-api
     name: Realtor.com Property Data API
     tags:
@@ -60,7 +57,8 @@ apis:
       - Search
       - Property Data
       - MLS
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://realtor.p.rapidapi.com
     humanURL: https://rapidapi.com/apidojo/api/realty-in-us
     properties:
@@ -69,16 +67,12 @@ apis:
       - url: openapi/realtor-property-data-openapi.yml
         type: OpenAPI
     description: >-
-      The Realtor.com Property Data API provides programmatic access to
-      real estate listing data from Realtor.com, one of the largest property
-      listing platforms in the United States. It offers endpoints for
-      searching properties by location, price range, bedrooms, bathrooms,
-      and other criteria, as well as retrieving detailed property information
-      including listing status, photos, and neighborhood data. The API
-      supports both for-sale and for-rent property searches and provides
-      access to school ratings, market trends, and comparable property data
-      that developers can use to build real estate applications and analytics
-      tools.
+      The Realtor.com Property Data API provides programmatic access to real estate
+      listing data from Realtor.com, one of the largest property listing platforms
+      in the United States. It offers endpoints for searching properties by location,
+      price range, bedrooms, bathrooms, and other criteria, as well as retrieving
+      detailed property information including listing status, photos, and neighborhood
+      data.
 common:
   - type: JSON-LD
     url: json-ld/realtor-context.jsonld
@@ -86,3 +80,6 @@ common:
     url: json-schema/realtor-lead-schema.json
   - type: JSONSchema
     url: json-schema/realtor-property-schema.json
+description: >-
+  Realtor.com is an online real estate marketplace operated by Move, Inc., providing
+  home listings, neighborhood information, and tools for buyers, sellers, and renters.
