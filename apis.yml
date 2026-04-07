@@ -1,18 +1,16 @@
 aid: realtor
-url: 
-  https://raw.githubusercontent.com/api-evangelist/realtor/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/realtor/refs/heads/main/apis.yml
 modified: '2026-03-20'
 apis:
   - aid: realtor:connections-plus-api
     name: Realtor.com Connections Plus API
     tags:
-      - Real Estate
-      - Leads
-      - CRM
       - Agents
       - Brokers
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - CRM
+      - Leads
+      - Real Estate
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://www.realtor.com/marketing/connections/
     properties:
@@ -30,13 +28,12 @@ apis:
   - aid: realtor:lead-delivery-api
     name: Realtor.com Lead Delivery API
     tags:
-      - Real Estate
-      - Leads
-      - Delivery
-      - Notifications
       - CRM Integration
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Delivery
+      - Leads
+      - Notifications
+      - Real Estate
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://www.realtor.com/marketing/connections/
     properties:
@@ -52,13 +49,12 @@ apis:
   - aid: realtor:property-data-api
     name: Realtor.com Property Data API
     tags:
-      - Real Estate
-      - Property Listings
-      - Search
-      - Property Data
       - MLS
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Property Data
+      - Property Listings
+      - Real Estate
+      - Search
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://realtor.p.rapidapi.com
     humanURL: https://rapidapi.com/apidojo/api/realty-in-us
     properties:

@@ -23,14 +23,6 @@ servers:
   - url: https://realtor.p.rapidapi.com
     description: RapidAPI Production Server
 tags:
-  - name: Locations
-    description: >-
-      Endpoints for searching and auto-completing location names, addresses,
-      and geographic areas used as inputs for property searches.
-  - name: Properties
-    description: >-
-      Endpoints for searching, listing, and retrieving detailed property
-      information including for-sale, for-rent, and recently sold listings.
   - name: Agents
     description: >-
       Endpoints for searching and retrieving information about real estate
@@ -39,6 +31,14 @@ tags:
     description: >-
       Endpoints for retrieving mortgage rates and financial data relevant to
       real estate transactions.
+  - name: Locations
+    description: >-
+      Endpoints for searching and auto-completing location names, addresses,
+      and geographic areas used as inputs for property searches.
+  - name: Properties
+    description: >-
+      Endpoints for searching, listing, and retrieving detailed property
+      information including for-sale, for-rent, and recently sold listings.
 security:
   - rapidApiKey: []
 paths:
