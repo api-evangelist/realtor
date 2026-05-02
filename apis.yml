@@ -1,6 +1,6 @@
 aid: realtor
 url: https://raw.githubusercontent.com/api-evangelist/realtor/refs/heads/main/apis.yml
-modified: '2026-03-20'
+modified: '2026-04-28'
 apis:
   - aid: realtor:connections-plus-api
     name: Realtor.com Connections Plus API
