@@ -1,0 +1,337 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Realtor.com Property Data API
+  description: The Realtor.com Property Data API provides programmatic access to real estate listing data from Realtor.com,
+    one of the largest property listing platforms in the United States. It offers endpoints for searching properties by location,
+    price range, bedrooms, bathrooms, and other criteria, as well as retrieving detailed property information including listing
+    status, photos, and neighborhood data. The API supports both for-sale and for-rent property searches and provides access
+    to school ratings, market trends, and comparable property data that developers can use to build real estate applications
+  tags:
+  - Realtor
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: realtor
+    baseUri: https://realtor.p.rapidapi.com
+    description: Realtor.com Property Data API HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: X-RapidAPI-Key
+      value: '{{REALTOR_TOKEN}}'
+    resources:
+    - name: locations-v2-auto-complete
+      path: /locations/v2/auto-complete
+      operations:
+      - name: autocompletelocations
+        method: GET
+        description: Auto-complete locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: properties-v3-list
+      path: /properties/v3/list
+      operations:
+      - name: listproperties
+        method: POST
+        description: List properties
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: properties-v2-detail
+      path: /properties/v2/detail
+      operations:
+      - name: getpropertydetail
+        method: GET
+        description: Get property detail
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: properties-v2-list-by-mls
+      path: /properties/v2/list-by-mls
+      operations:
+      - name: listpropertiesbymls
+        method: GET
+        description: List properties by MLS
+        inputParameters:
+        - name: mls_id
+          in: query
+          type: string
+          required: true
+          description: The MLS identifier to search for. Can be a single MLS ID or a comma-separated list of MLS IDs.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: properties-v2-list-similar-homes
+      path: /properties/v2/list-similar-homes
+      operations:
+      - name: listsimilarhomes
+        method: GET
+        description: List similar homes for sale
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: properties-v2-list-similar-rental-homes
+      path: /properties/v2/list-similar-rental-homes
+      operations:
+      - name: listsimilarrentalhomes
+        method: GET
+        description: List similar rental homes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: agents-list
+      path: /agents/list
+      operations:
+      - name: listagents
+        method: GET
+        description: List agents
+        inputParameters:
+        - name: postal_code
+          in: query
+          type: string
+          description: Postal code to search for agents in a specific area.
+        - name: name
+          in: query
+          type: string
+          description: Agent name to search for.
+        - name: offset
+          in: query
+          type: integer
+          description: Number of results to skip for pagination.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results to return.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: finance-rates
+      path: /finance/rates
+      operations:
+      - name: getmortgagerates
+        method: GET
+        description: Get mortgage rates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: realtor-rest
+    description: REST adapter for Realtor.com Property Data API.
+    resources:
+    - path: /locations/v2/auto-complete
+      name: autocompletelocations
+      operations:
+      - method: GET
+        name: autocompletelocations
+        description: Auto-complete locations
+        call: realtor.autocompletelocations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /properties/v3/list
+      name: listproperties
+      operations:
+      - method: POST
+        name: listproperties
+        description: List properties
+        call: realtor.listproperties
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /properties/v2/detail
+      name: getpropertydetail
+      operations:
+      - method: GET
+        name: getpropertydetail
+        description: Get property detail
+        call: realtor.getpropertydetail
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /properties/v2/list-by-mls
+      name: listpropertiesbymls
+      operations:
+      - method: GET
+        name: listpropertiesbymls
+        description: List properties by MLS
+        call: realtor.listpropertiesbymls
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /properties/v2/list-similar-homes
+      name: listsimilarhomes
+      operations:
+      - method: GET
+        name: listsimilarhomes
+        description: List similar homes for sale
+        call: realtor.listsimilarhomes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /properties/v2/list-similar-rental-homes
+      name: listsimilarrentalhomes
+      operations:
+      - method: GET
+        name: listsimilarrentalhomes
+        description: List similar rental homes
+        call: realtor.listsimilarrentalhomes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /agents/list
+      name: listagents
+      operations:
+      - method: GET
+        name: listagents
+        description: List agents
+        call: realtor.listagents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /finance/rates
+      name: getmortgagerates
+      operations:
+      - method: GET
+        name: getmortgagerates
+        description: Get mortgage rates
+        call: realtor.getmortgagerates
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: realtor-mcp
+    transport: http
+    description: MCP adapter for Realtor.com Property Data API for AI agent use.
+    tools:
+    - name: autocompletelocations
+      description: Auto-complete locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: realtor.autocompletelocations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listproperties
+      description: List properties
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: realtor.listproperties
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpropertydetail
+      description: Get property detail
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: realtor.getpropertydetail
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listpropertiesbymls
+      description: List properties by MLS
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: realtor.listpropertiesbymls
+      with:
+        mls_id: tools.mls_id
+      inputParameters:
+      - name: mls_id
+        type: string
+        description: The MLS identifier to search for. Can be a single MLS ID or a comma-separated list of MLS IDs.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listsimilarhomes
+      description: List similar homes for sale
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: realtor.listsimilarhomes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listsimilarrentalhomes
+      description: List similar rental homes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: realtor.listsimilarrentalhomes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listagents
+      description: List agents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: realtor.listagents
+      with:
+        postal_code: tools.postal_code
+        name: tools.name
+        offset: tools.offset
+        limit: tools.limit
+      inputParameters:
+      - name: postal_code
+        type: string
+        description: Postal code to search for agents in a specific area.
+      - name: name
+        type: string
+        description: Agent name to search for.
+      - name: offset
+        type: integer
+        description: Number of results to skip for pagination.
+      - name: limit
+        type: integer
+        description: Maximum number of results to return.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getmortgagerates
+      description: Get mortgage rates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: realtor.getmortgagerates
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    REALTOR_TOKEN: REALTOR_TOKEN
