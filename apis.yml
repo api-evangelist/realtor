@@ -70,7 +70,7 @@ apis:
       detailed property information including listing status, photos, and neighborhood
       data.
 common:
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/realtor-context.jsonld
   - type: JSONSchema
     url: json-schema/realtor-lead-schema.json
