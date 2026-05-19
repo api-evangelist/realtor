@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Realtor.com Property Data API — Finance
+  description: 'Realtor.com Property Data API — Finance. 1 operations. Lead operation: Get mortgage rates. Self-contained
+    Naftiko capability covering one Realtor business surface.'
+  tags:
+  - Realtor
+  - Finance
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REALTOR_API_KEY: REALTOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: property-data-finance
+    baseUri: https://realtor.p.rapidapi.com
+    description: Realtor.com Property Data API — Finance business capability. Self-contained, no shared references.
+    resources:
+    - name: finance-rates
+      path: /finance/rates
+      operations:
+      - name: getmortgagerates
+        method: GET
+        description: Get mortgage rates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.REALTOR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: property-data-finance-rest
+    port: 8080
+    description: REST adapter for Realtor.com Property Data API — Finance. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/finance/rates
+      name: finance-rates
+      description: REST surface for finance-rates.
+      operations:
+      - method: GET
+        name: getmortgagerates
+        description: Get mortgage rates
+        call: property-data-finance.getmortgagerates
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: property-data-finance-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Realtor.com Property Data API — Finance. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-mortgage-rates
+      description: Get mortgage rates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: property-data-finance.getmortgagerates
+      outputParameters:
+      - type: object
+        mapping: $.

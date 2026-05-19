@@ -1,0 +1,220 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Realtor.com Property Data API — Properties
+  description: 'Realtor.com Property Data API — Properties. 5 operations. Lead operation: Get property detail. Self-contained
+    Naftiko capability covering one Realtor business surface.'
+  tags:
+  - Realtor
+  - Properties
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REALTOR_API_KEY: REALTOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: property-data-properties
+    baseUri: https://realtor.p.rapidapi.com
+    description: Realtor.com Property Data API — Properties business capability. Self-contained, no shared references.
+    resources:
+    - name: properties-v2-detail
+      path: /properties/v2/detail
+      operations:
+      - name: getpropertydetail
+        method: GET
+        description: Get property detail
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: properties-v2-list-by-mls
+      path: /properties/v2/list-by-mls
+      operations:
+      - name: listpropertiesbymls
+        method: GET
+        description: List properties by MLS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: mls_id
+          in: query
+          type: string
+          description: The MLS identifier to search for. Can be a single MLS ID or a comma-separated list of MLS IDs.
+          required: true
+    - name: properties-v2-list-similar-homes
+      path: /properties/v2/list-similar-homes
+      operations:
+      - name: listsimilarhomes
+        method: GET
+        description: List similar homes for sale
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: properties-v2-list-similar-rental-homes
+      path: /properties/v2/list-similar-rental-homes
+      operations:
+      - name: listsimilarrentalhomes
+        method: GET
+        description: List similar rental homes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: properties-v3-list
+      path: /properties/v3/list
+      operations:
+      - name: listproperties
+        method: POST
+        description: List properties
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.REALTOR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: property-data-properties-rest
+    port: 8080
+    description: REST adapter for Realtor.com Property Data API — Properties. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/properties/v2/detail
+      name: properties-v2-detail
+      description: REST surface for properties-v2-detail.
+      operations:
+      - method: GET
+        name: getpropertydetail
+        description: Get property detail
+        call: property-data-properties.getpropertydetail
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/properties/v2/list-by-mls
+      name: properties-v2-list-by-mls
+      description: REST surface for properties-v2-list-by-mls.
+      operations:
+      - method: GET
+        name: listpropertiesbymls
+        description: List properties by MLS
+        call: property-data-properties.listpropertiesbymls
+        with:
+          mls_id: rest.mls_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/properties/v2/list-similar-homes
+      name: properties-v2-list-similar-homes
+      description: REST surface for properties-v2-list-similar-homes.
+      operations:
+      - method: GET
+        name: listsimilarhomes
+        description: List similar homes for sale
+        call: property-data-properties.listsimilarhomes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/properties/v2/list-similar-rental-homes
+      name: properties-v2-list-similar-rental-homes
+      description: REST surface for properties-v2-list-similar-rental-homes.
+      operations:
+      - method: GET
+        name: listsimilarrentalhomes
+        description: List similar rental homes
+        call: property-data-properties.listsimilarrentalhomes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/properties/v3/list
+      name: properties-v3-list
+      description: REST surface for properties-v3-list.
+      operations:
+      - method: POST
+        name: listproperties
+        description: List properties
+        call: property-data-properties.listproperties
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: property-data-properties-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Realtor.com Property Data API — Properties. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-property-detail
+      description: Get property detail
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: property-data-properties.getpropertydetail
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-properties-mls
+      description: List properties by MLS
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: property-data-properties.listpropertiesbymls
+      with:
+        mls_id: tools.mls_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-similar-homes-sale
+      description: List similar homes for sale
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: property-data-properties.listsimilarhomes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-similar-rental-homes
+      description: List similar rental homes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: property-data-properties.listsimilarrentalhomes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-properties
+      description: List properties
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: property-data-properties.listproperties
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
