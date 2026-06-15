@@ -1,0 +1,208 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Realtor.com Property Data API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Auto-complete locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://realtor.p.rapidapi.com/locations/v2/auto-complete",
+            "params": [
+              {
+                "name": "input",
+                "value": "",
+                "type": "query",
+                "description": "Partial location string for auto-completion. Can be a city name, zip code, address, or neighborhood name."
+              }
+            ]
+          },
+          "docs": "Returns location suggestions based on a partial input string. Use this endpoint to help users find specific addresses, cities, zip codes, neighborhoods, or schools by providing type-ahead search functionality. The returned location identifiers can be used as inputs for property search endpoints."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://realtor.p.rapidapi.com/properties/v3/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Searches and returns a list of properties matching the specified criteria. Supports filtering by status (for sale, for rent, sold), location, price range, property type, number of bedrooms and bathrooms, lot size, and other attributes. Results can be sorted and paginated."
+        },
+        {
+          "info": {
+            "name": "Get property detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://realtor.p.rapidapi.com/properties/v2/detail",
+            "params": [
+              {
+                "name": "property_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique property identifier returned from search or list endpoints."
+              }
+            ]
+          },
+          "docs": "Returns comprehensive details for a specific property identified by its property ID. Includes listing information, price history, tax records, property features, photos, neighborhood data, nearby schools, and comparable properties."
+        },
+        {
+          "info": {
+            "name": "List properties by MLS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://realtor.p.rapidapi.com/properties/v2/list-by-mls",
+            "params": [
+              {
+                "name": "mls_id",
+                "value": "",
+                "type": "query",
+                "description": "The MLS identifier to search for. Can be a single MLS ID or a comma-separated list of MLS IDs."
+              }
+            ]
+          },
+          "docs": "Returns properties matching specific MLS (Multiple Listing Service) identifiers. Use this endpoint when you have MLS IDs and need to retrieve the corresponding property listings."
+        },
+        {
+          "info": {
+            "name": "List similar homes for sale",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://realtor.p.rapidapi.com/properties/v2/list-similar-homes",
+            "params": [
+              {
+                "name": "property_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique property identifier returned from search or list endpoints."
+              }
+            ]
+          },
+          "docs": "Returns properties similar to a specified property that are currently listed for sale. Useful for providing comparable listings and helping users discover alternative options in the same area and price range."
+        },
+        {
+          "info": {
+            "name": "List similar rental homes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://realtor.p.rapidapi.com/properties/v2/list-similar-rental-homes",
+            "params": [
+              {
+                "name": "property_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique property identifier returned from search or list endpoints."
+              }
+            ]
+          },
+          "docs": "Returns rental properties similar to a specified property. Helps renters discover alternative rental options in the same area with comparable features and pricing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://realtor.p.rapidapi.com/agents/list",
+            "params": [
+              {
+                "name": "postal_code",
+                "value": "",
+                "type": "query",
+                "description": "Postal code to search for agents in a specific area."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Agent name to search for."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              }
+            ]
+          },
+          "docs": "Searches for real estate agents by location, name, or specialty. Returns agent profiles including contact information, listings count, ratings, and areas of expertise."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Finance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get mortgage rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://realtor.p.rapidapi.com/finance/rates"
+          },
+          "docs": "Returns current mortgage rate information including rates for various loan types such as 30-year fixed, 15-year fixed, and adjustable rate mortgages. Useful for providing financial context alongside property listings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
