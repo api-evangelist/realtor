@@ -10,7 +10,7 @@ apis:
       - CRM
       - Leads
       - Real Estate
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://www.realtor.com/marketing/connections/
     properties:
@@ -31,7 +31,7 @@ apis:
       - Leads
       - Notifications
       - Real Estate
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://www.realtor.com/marketing/connections/
     properties:
@@ -51,7 +51,7 @@ apis:
       - Property Listings
       - Real Estate
       - Search
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://realtor.p.rapidapi.com
     humanURL: https://rapidapi.com/apidojo/api/realty-in-us
     properties:
