@@ -65,6 +65,12 @@ apis:
       location, price range, bedrooms, bathrooms, and other criteria, as well as retrieving detailed property
       information including listing status, photos, and neighborhood data.
 common:
+  - type: DomainSecurity
+    url: security/realtor-domain-security.yml
+  - type: Authentication
+    url: authentication/realtor-authentication.yml
+  - url: https://www.realtor.com/news/feed/
+    type: Blog
   - type: LinkedIn
     url: https://www.linkedin.com/company/realtor-com
   - type: JSONLD

@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/realtor-property-data-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: rapidApiKey
+  type: apiKey
+  in: header
+  parameter: X-RapidAPI-Key
+  description: API key provided by RapidAPI for authenticating requests.
+  sources:
+  - openapi/realtor-property-data-openapi.yml
