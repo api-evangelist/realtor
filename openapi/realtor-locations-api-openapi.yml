@@ -1,0 +1,101 @@
+openapi: 3.1.0
+info:
+  title: Realtor.com Property Data Agents Locations API
+  description: The Realtor.com Property Data API provides programmatic access to real estate listing data from Realtor.com, one of the largest property listing platforms in the United States. It offers endpoints for searching properties by location, price range, bedrooms, bathrooms, and other criteria, as well as retrieving detailed property information including listing status, photos, and neighborhood data. The API supports both for-sale and for-rent property searches and provides access to school ratings, market trends, and comparable property data that developers can use to build real estate applications and analytics tools. The API is available through RapidAPI.
+  version: '2.0'
+  contact:
+    name: Realtor.com API Support
+    url: https://rapidapi.com/apidojo/api/realty-in-us
+  termsOfService: https://www.realtor.com/terms
+servers:
+- url: https://realtor.p.rapidapi.com
+  description: RapidAPI Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Locations
+  description: Endpoints for searching and auto-completing location names, addresses, and geographic areas used as inputs for property searches.
+paths:
+  /locations/v2/auto-complete:
+    get:
+      operationId: autoCompleteLocations
+      summary: Auto-complete locations
+      description: Returns location suggestions based on a partial input string. Use this endpoint to help users find specific addresses, cities, zip codes, neighborhoods, or schools by providing type-ahead search functionality. The returned location identifiers can be used as inputs for property search endpoints.
+      tags:
+      - Locations
+      parameters:
+      - $ref: '#/components/parameters/locationInput'
+      responses:
+        '200':
+          description: Successfully returned location suggestions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationAutoCompleteResponse'
+        '400':
+          description: Bad request due to invalid or missing input parameter
+        '401':
+          description: Unauthorized due to missing or invalid API key
+        '429':
+          description: Rate limit exceeded
+components:
+  schemas:
+    LocationSuggestion:
+      type: object
+      description: A single location suggestion with identifying information.
+      properties:
+        area_type:
+          type: string
+          description: Type of area such as city, address, postal_code, neighborhood, school, or county.
+        _id:
+          type: string
+          description: Unique identifier for the location.
+        _score:
+          type: number
+          description: Relevance score for the suggestion.
+        city:
+          type: string
+          description: City name associated with the location.
+        state_code:
+          type: string
+          description: Two-letter state code.
+        postal_code:
+          type: string
+          description: Five-digit postal code.
+        country:
+          type: string
+          description: Country code, typically US.
+    LocationAutoCompleteResponse:
+      type: object
+      description: Response containing location auto-complete suggestions.
+      properties:
+        status:
+          type: integer
+          description: HTTP status code of the response.
+        data:
+          type: object
+          description: Container for auto-complete results.
+          properties:
+            autocomplete:
+              type: array
+              description: List of location suggestions matching the input.
+              items:
+                $ref: '#/components/schemas/LocationSuggestion'
+  parameters:
+    locationInput:
+      name: input
+      in: query
+      required: true
+      description: Partial location string for auto-completion. Can be a city name, zip code, address, or neighborhood name.
+      schema:
+        type: string
+        minLength: 1
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: API key provided by RapidAPI for authenticating requests.
+externalDocs:
+  description: Realtor.com Property Data API Documentation
+  url: https://rapidapi.com/apidojo/api/realty-in-us

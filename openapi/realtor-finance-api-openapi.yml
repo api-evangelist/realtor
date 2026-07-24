@@ -1,0 +1,73 @@
+openapi: 3.1.0
+info:
+  title: Realtor.com Property Data Agents Finance API
+  description: The Realtor.com Property Data API provides programmatic access to real estate listing data from Realtor.com, one of the largest property listing platforms in the United States. It offers endpoints for searching properties by location, price range, bedrooms, bathrooms, and other criteria, as well as retrieving detailed property information including listing status, photos, and neighborhood data. The API supports both for-sale and for-rent property searches and provides access to school ratings, market trends, and comparable property data that developers can use to build real estate applications and analytics tools. The API is available through RapidAPI.
+  version: '2.0'
+  contact:
+    name: Realtor.com API Support
+    url: https://rapidapi.com/apidojo/api/realty-in-us
+  termsOfService: https://www.realtor.com/terms
+servers:
+- url: https://realtor.p.rapidapi.com
+  description: RapidAPI Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Finance
+  description: Endpoints for retrieving mortgage rates and financial data relevant to real estate transactions.
+paths:
+  /finance/rates:
+    get:
+      operationId: getMortgageRates
+      summary: Get mortgage rates
+      description: Returns current mortgage rate information including rates for various loan types such as 30-year fixed, 15-year fixed, and adjustable rate mortgages. Useful for providing financial context alongside property listings.
+      tags:
+      - Finance
+      responses:
+        '200':
+          description: Successfully returned mortgage rate data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MortgageRatesResponse'
+        '401':
+          description: Unauthorized due to missing or invalid API key
+        '429':
+          description: Rate limit exceeded
+components:
+  schemas:
+    MortgageRatesResponse:
+      type: object
+      description: Response containing current mortgage rate information.
+      properties:
+        rates:
+          type: array
+          description: Array of mortgage rate objects for different loan types.
+          items:
+            $ref: '#/components/schemas/MortgageRate'
+    MortgageRate:
+      type: object
+      description: Mortgage rate information for a specific loan type.
+      properties:
+        loan_type:
+          type: string
+          description: Type of mortgage loan such as fixed_30_year, fixed_15_year, or arm_5_1.
+        rate:
+          type: number
+          description: Current interest rate as a percentage.
+        apr:
+          type: number
+          description: Annual percentage rate including fees.
+        last_updated:
+          type: string
+          format: date-time
+          description: Timestamp when the rate was last updated.
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: API key provided by RapidAPI for authenticating requests.
+externalDocs:
+  description: Realtor.com Property Data API Documentation
+  url: https://rapidapi.com/apidojo/api/realty-in-us

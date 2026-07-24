@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  title: Realtor.com Property Data Agents API
+  description: The Realtor.com Property Data API provides programmatic access to real estate listing data from Realtor.com, one of the largest property listing platforms in the United States. It offers endpoints for searching properties by location, price range, bedrooms, bathrooms, and other criteria, as well as retrieving detailed property information including listing status, photos, and neighborhood data. The API supports both for-sale and for-rent property searches and provides access to school ratings, market trends, and comparable property data that developers can use to build real estate applications and analytics tools. The API is available through RapidAPI.
+  version: '2.0'
+  contact:
+    name: Realtor.com API Support
+    url: https://rapidapi.com/apidojo/api/realty-in-us
+  termsOfService: https://www.realtor.com/terms
+servers:
+- url: https://realtor.p.rapidapi.com
+  description: RapidAPI Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Agents
+  description: Endpoints for searching and retrieving information about real estate agents and brokers.
+paths:
+  /agents/list:
+    get:
+      operationId: listAgents
+      summary: List agents
+      description: Searches for real estate agents by location, name, or specialty. Returns agent profiles including contact information, listings count, ratings, and areas of expertise.
+      tags:
+      - Agents
+      parameters:
+      - name: postal_code
+        in: query
+        required: false
+        description: Postal code to search for agents in a specific area.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Agent name to search for.
+        schema:
+          type: string
+      - name: offset
+        in: query
+        required: false
+        description: Number of results to skip for pagination.
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results to return.
+        schema:
+          type: integer
+          default: 20
+          maximum: 50
+      responses:
+        '200':
+          description: Successfully returned agent listings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentListResponse'
+        '400':
+          description: Bad request due to invalid parameters
+        '401':
+          description: Unauthorized due to missing or invalid API key
+        '429':
+          description: Rate limit exceeded
+components:
+  schemas:
+    Agent:
+      type: object
+      description: Real estate agent profile information.
+      properties:
+        id:
+          type: string
+          description: Unique agent identifier.
+        full_name:
+          type: string
+          description: Full name of the agent.
+        first_name:
+          type: string
+          description: First name of the agent.
+        last_name:
+          type: string
+          description: Last name of the agent.
+        office:
+          type: object
+          description: Agent office information.
+          properties:
+            name:
+              type: string
+              description: Office or brokerage name.
+            phone:
+              type: string
+              description: Office phone number.
+        phones:
+          type: array
+          description: Agent phone numbers.
+          items:
+            type: object
+            properties:
+              number:
+                type: string
+                description: Phone number.
+              type:
+                type: string
+                description: Phone type such as mobile, office, or fax.
+        email:
+          type: string
+          format: email
+          description: Agent email address.
+        photo:
+          type: string
+          format: uri
+          description: URL of agent profile photo.
+        recently_sold_count:
+          type: integer
+          description: Number of properties recently sold by the agent.
+        for_sale_count:
+          type: integer
+          description: Number of active for-sale listings.
+        area_served:
+          type: array
+          description: Areas where the agent operates.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Area name.
+              state_code:
+                type: string
+                description: Two-letter state code.
+    AgentListResponse:
+      type: object
+      description: Response containing a list of real estate agents.
+      properties:
+        matching_rows:
+          type: integer
+          description: Total number of agents matching the search criteria.
+        agents:
+          type: array
+          description: Array of agent profile objects.
+          items:
+            $ref: '#/components/schemas/Agent'
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: API key provided by RapidAPI for authenticating requests.
+externalDocs:
+  description: Realtor.com Property Data API Documentation
+  url: https://rapidapi.com/apidojo/api/realty-in-us
