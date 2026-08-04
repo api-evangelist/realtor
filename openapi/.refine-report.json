@@ -1,0 +1,20 @@
+{
+  "provider": "realtor",
+  "sources": [
+    "realtor-agents-api-openapi.yml",
+    "realtor-finance-api-openapi.yml",
+    "realtor-locations-api-openapi.yml",
+    "realtor-properties-api-openapi.yml"
+  ],
+  "outputs": [
+    "realtor-agents-api-openapi.yml",
+    "realtor-finance-api-openapi.yml",
+    "realtor-locations-api-openapi.yml",
+    "realtor-properties-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

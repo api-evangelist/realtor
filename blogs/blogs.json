@@ -5,10 +5,10 @@
       "source": "https://www.realtor.com/news/feed/",
       "feed_url": "https://www.realtor.com/news/feed/",
       "title": "",
-      "saved": 0,
+      "saved": 1,
       "method": "feed"
     }
   ],
-  "fetched": "2026-07-11T11:50:51Z",
-  "post_count": 55
+  "fetched": "2026-08-01T15:49:00Z",
+  "post_count": 144
 }
