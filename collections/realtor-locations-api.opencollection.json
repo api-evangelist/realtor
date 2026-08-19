@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Realtor.com Property Data Agents Locations API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Auto-complete locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://realtor.p.rapidapi.com/locations/v2/auto-complete",
+            "params": [
+              {
+                "name": "input",
+                "value": "",
+                "type": "query",
+                "description": "Partial location string for auto-completion. Can be a city name, zip code, address, or neighborhood name."
+              }
+            ]
+          },
+          "docs": "Returns location suggestions based on a partial input string. Use this endpoint to help users find specific addresses, cities, zip codes, neighborhoods, or schools by providing type-ahead search functionality. The returned location identifiers can be used as inputs for property search endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

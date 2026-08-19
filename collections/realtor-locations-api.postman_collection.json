@@ -1,0 +1,281 @@
+{
+  "item": [
+    {
+      "id": "bb6f4370-1e44-4eb0-9a6f-4e79dd8c1f59",
+      "name": "Locations",
+      "description": {
+        "content": "Endpoints for searching and auto-completing location names, addresses, and geographic areas used as inputs for property searches.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dbd198b5-b3c6-4e4d-a57e-7ff707453767",
+          "name": "Auto-complete locations",
+          "request": {
+            "name": "Auto-complete locations",
+            "description": {
+              "content": "Returns location suggestions based on a partial input string. Use this endpoint to help users find specific addresses, cities, zip codes, neighborhoods, or schools by providing type-ahead search functionality. The returned location identifiers can be used as inputs for property search endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations",
+                "v2",
+                "auto-complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "input",
+                  "value": "<string>",
+                  "description": "(Required) Partial location string for auto-completion. Can be a city name, zip code, address, or neighborhood name."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea14f46b-54e4-4b04-9112-043c245012c3",
+              "name": "Successfully returned location suggestions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    "v2",
+                    "auto-complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "input",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9520,\n  \"data\": {\n    \"autocomplete\": [\n      {\n        \"area_type\": \"string\",\n        \"_id\": \"string\",\n        \"_score\": 2550.236822558536,\n        \"city\": \"string\",\n        \"state_code\": \"string\",\n        \"postal_code\": \"string\",\n        \"country\": \"string\"\n      },\n      {\n        \"area_type\": \"string\",\n        \"_id\": \"string\",\n        \"_score\": 2476.524239318668,\n        \"city\": \"string\",\n        \"state_code\": \"string\",\n        \"postal_code\": \"string\",\n        \"country\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbd3b0e2-c0c6-44c7-bc1b-aff11f4cb25c",
+              "name": "Bad request due to invalid or missing input parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    "v2",
+                    "auto-complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "input",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec5b9d54-501a-4e0f-8f5e-87327b324b6d",
+              "name": "Unauthorized due to missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    "v2",
+                    "auto-complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "input",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae8bfe9c-e8bc-4468-b561-4adc7c6e90f5",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    "v2",
+                    "auto-complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "input",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://realtor.p.rapidapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2b1f1dfc-a5e9-4977-8321-1f4837afb3d7",
+    "name": "Realtor.com Property Data Agents Locations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Realtor.com Property Data API provides programmatic access to real estate listing data from Realtor.com, one of the largest property listing platforms in the United States. It offers endpoints for searching properties by location, price range, bedrooms, bathrooms, and other criteria, as well as retrieving detailed property information including listing status, photos, and neighborhood data. The API supports both for-sale and for-rent property searches and provides access to school ratings, market trends, and comparable property data that developers can use to build real estate applications and analytics tools. The API is available through RapidAPI.\n\nContact Support:\n Name: Realtor.com API Support",
+      "type": "text/plain"
+    }
+  }
+}

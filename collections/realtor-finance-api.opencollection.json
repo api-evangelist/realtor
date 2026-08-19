@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Realtor.com Property Data Agents Finance API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Finance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get mortgage rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://realtor.p.rapidapi.com/finance/rates"
+          },
+          "docs": "Returns current mortgage rate information including rates for various loan types such as 30-year fixed, 15-year fixed, and adjustable rate mortgages. Useful for providing financial context alongside property listings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

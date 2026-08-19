@@ -1,0 +1,1273 @@
+{
+  "item": [
+    {
+      "id": "4fbbe434-55a2-4635-927e-37599994da95",
+      "name": "Properties",
+      "description": {
+        "content": "Endpoints for searching, listing, and retrieving detailed property information including for-sale, for-rent, and recently sold listings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be526484-0901-40b1-8d06-8f91d0f99cec",
+          "name": "List properties",
+          "request": {
+            "name": "List properties",
+            "description": {
+              "content": "Searches and returns a list of properties matching the specified criteria. Supports filtering by status (for sale, for rent, sold), location, price range, property type, number of bedrooms and bathrooms, lot size, and other attributes. Results can be sorted and paginated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                "v3",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"postal_code\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state_code\": \"<string>\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"sort\": {\n    \"direction\": \"<string>\",\n    \"field\": \"<string>\"\n  },\n  \"price_min\": \"<integer>\",\n  \"price_max\": \"<integer>\",\n  \"beds_min\": \"<integer>\",\n  \"beds_max\": \"<integer>\",\n  \"baths_min\": \"<integer>\",\n  \"baths_max\": \"<integer>\",\n  \"sqft_min\": \"<integer>\",\n  \"sqft_max\": \"<integer>\",\n  \"lot_sqft_min\": \"<integer>\",\n  \"lot_sqft_max\": \"<integer>\",\n  \"prop_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"age_min\": \"<integer>\",\n  \"age_max\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "06cef68e-d223-472c-859d-ce363ac3adce",
+              "name": "Successfully returned property listings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v3",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"postal_code\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state_code\": \"<string>\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"sort\": {\n    \"direction\": \"<string>\",\n    \"field\": \"<string>\"\n  },\n  \"price_min\": \"<integer>\",\n  \"price_max\": \"<integer>\",\n  \"beds_min\": \"<integer>\",\n  \"beds_max\": \"<integer>\",\n  \"baths_min\": \"<integer>\",\n  \"baths_max\": \"<integer>\",\n  \"sqft_min\": \"<integer>\",\n  \"sqft_max\": \"<integer>\",\n  \"lot_sqft_min\": \"<integer>\",\n  \"lot_sqft_max\": \"<integer>\",\n  \"prop_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"age_min\": \"<integer>\",\n  \"age_max\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 3521,\n  \"data\": {\n    \"home_search\": {\n      \"count\": 181,\n      \"total\": 8099,\n      \"results\": [\n        {\n          \"property_id\": \"string\",\n          \"listing_id\": \"string\",\n          \"status\": \"string\",\n          \"list_price\": 5541.326979098112,\n          \"list_date\": \"2018-08-31T07:24:01.876Z\",\n          \"last_sold_price\": 1258.6328128161294,\n          \"last_sold_date\": \"2007-01-29\",\n          \"description\": {\n            \"beds\": 9298,\n            \"baths\": 9024,\n            \"sqft\": 8391,\n            \"lot_sqft\": 934,\n            \"type\": \"string\",\n            \"year_built\": 6105,\n            \"garage\": 9031,\n            \"stories\": 5227\n          },\n          \"location\": {\n            \"address\": {\n              \"line\": \"string\",\n              \"city\": \"string\",\n              \"state_code\": \"string\",\n              \"state\": \"string\",\n              \"postal_code\": \"string\",\n              \"county\": \"string\",\n              \"coordinate\": {\n                \"lat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lon\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            \"neighborhood_name\": \"string\"\n          },\n          \"photos\": [\n            {\n              \"href\": \"http://dbxEmGSbDcsSAuFyFVLZ.zzs3fFBHaKBkeqvoFMwNx-etPm.QXF.8FkLgZzWVmjxoJeXF\"\n            },\n            {\n              \"href\": \"http://spHPyGF.vdsOswIknFLhOoSvm76malrUAM0htp\"\n            }\n          ],\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"property_id\": \"string\",\n          \"listing_id\": \"string\",\n          \"status\": \"string\",\n          \"list_price\": 5222.702541961427,\n          \"list_date\": \"2025-07-09T22:23:56.646Z\",\n          \"last_sold_price\": 3339.289370433871,\n          \"last_sold_date\": \"1961-09-06\",\n          \"description\": {\n            \"beds\": 9553,\n            \"baths\": 9197,\n            \"sqft\": 7730,\n            \"lot_sqft\": 7132,\n            \"type\": \"string\",\n            \"year_built\": 3296,\n            \"garage\": 6900,\n            \"stories\": 9587\n          },\n          \"location\": {\n            \"address\": {\n              \"line\": \"string\",\n              \"city\": \"string\",\n              \"state_code\": \"string\",\n              \"state\": \"string\",\n              \"postal_code\": \"string\",\n              \"county\": \"string\",\n              \"coordinate\": {\n                \"lat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lon\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            \"neighborhood_name\": \"string\"\n          },\n          \"photos\": [\n            {\n              \"href\": \"http://agBJmCcVyJAQMYTRDXBoWeup.owvzBbXtkpPhZ\"\n            },\n            {\n              \"href\": \"https://xWkiWGVOMXKFWTxkvS.xgmuKM07vjQJObyf\"\n            }\n          ],\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad521d86-f611-472c-b465-51860cb67195",
+              "name": "Bad request due to invalid search parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v3",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"postal_code\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state_code\": \"<string>\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"sort\": {\n    \"direction\": \"<string>\",\n    \"field\": \"<string>\"\n  },\n  \"price_min\": \"<integer>\",\n  \"price_max\": \"<integer>\",\n  \"beds_min\": \"<integer>\",\n  \"beds_max\": \"<integer>\",\n  \"baths_min\": \"<integer>\",\n  \"baths_max\": \"<integer>\",\n  \"sqft_min\": \"<integer>\",\n  \"sqft_max\": \"<integer>\",\n  \"lot_sqft_min\": \"<integer>\",\n  \"lot_sqft_max\": \"<integer>\",\n  \"prop_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"age_min\": \"<integer>\",\n  \"age_max\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aa81cb0e-c4b5-460d-9854-311dfeeeec43",
+              "name": "Unauthorized due to missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v3",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"postal_code\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state_code\": \"<string>\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"sort\": {\n    \"direction\": \"<string>\",\n    \"field\": \"<string>\"\n  },\n  \"price_min\": \"<integer>\",\n  \"price_max\": \"<integer>\",\n  \"beds_min\": \"<integer>\",\n  \"beds_max\": \"<integer>\",\n  \"baths_min\": \"<integer>\",\n  \"baths_max\": \"<integer>\",\n  \"sqft_min\": \"<integer>\",\n  \"sqft_max\": \"<integer>\",\n  \"lot_sqft_min\": \"<integer>\",\n  \"lot_sqft_max\": \"<integer>\",\n  \"prop_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"age_min\": \"<integer>\",\n  \"age_max\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "251a8033-4bd7-4088-a767-898788a00a9f",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v3",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"postal_code\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state_code\": \"<string>\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"sort\": {\n    \"direction\": \"<string>\",\n    \"field\": \"<string>\"\n  },\n  \"price_min\": \"<integer>\",\n  \"price_max\": \"<integer>\",\n  \"beds_min\": \"<integer>\",\n  \"beds_max\": \"<integer>\",\n  \"baths_min\": \"<integer>\",\n  \"baths_max\": \"<integer>\",\n  \"sqft_min\": \"<integer>\",\n  \"sqft_max\": \"<integer>\",\n  \"lot_sqft_min\": \"<integer>\",\n  \"lot_sqft_max\": \"<integer>\",\n  \"prop_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"age_min\": \"<integer>\",\n  \"age_max\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71a06839-cb64-4759-b6a0-d3738ba2ec5c",
+          "name": "Get property detail",
+          "request": {
+            "name": "Get property detail",
+            "description": {
+              "content": "Returns comprehensive details for a specific property identified by its property ID. Includes listing information, price history, tax records, property features, photos, neighborhood data, nearby schools, and comparable properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                "v2",
+                "detail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "property_id",
+                  "value": "<string>",
+                  "description": "(Required) Unique property identifier returned from search or list endpoints."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e260ba6d-eb26-4406-b3d2-438f135338f4",
+              "name": "Successfully returned property details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "detail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8065,\n  \"data\": {\n    \"property_detail\": {\n      \"property_id\": \"string\",\n      \"listing_id\": \"string\",\n      \"status\": \"string\",\n      \"list_price\": 690.8054367937822,\n      \"list_date\": \"2010-01-20T12:55:23.957Z\",\n      \"description\": {\n        \"beds\": 9792,\n        \"baths\": 4477,\n        \"baths_full\": 1697,\n        \"baths_half\": 3356,\n        \"sqft\": 6216,\n        \"lot_sqft\": 5438,\n        \"type\": \"string\",\n        \"year_built\": 7292,\n        \"garage\": 5955,\n        \"stories\": 7369,\n        \"text\": \"string\"\n      },\n      \"location\": {\n        \"address\": {\n          \"line\": \"string\",\n          \"city\": \"string\",\n          \"state_code\": \"string\",\n          \"state\": \"string\",\n          \"postal_code\": \"string\",\n          \"county\": \"string\",\n          \"coordinate\": {\n            \"lat\": 6031.516822624601,\n            \"lon\": 6008.619830082259\n          }\n        },\n        \"neighborhood_name\": \"string\"\n      },\n      \"photos\": [\n        {\n          \"href\": \"https://HoACEnyuRKdFNpaZdytZzq.xcYeIyKThWtSnihnJ3rrfb\",\n          \"description\": \"string\"\n        },\n        {\n          \"href\": \"https://jmzIAUvkgtDclHIYnHhTjT.yggjbUo+ELTTtyRSccV1yqEOSCDCq-w+nDwK0ozzQjExI,3gydUzICmVaam2l\",\n          \"description\": \"string\"\n        }\n      ],\n      \"price_history\": [\n        {\n          \"date\": \"1978-06-08\",\n          \"price\": 6851.7264787455315,\n          \"event\": \"string\",\n          \"source\": \"string\"\n        },\n        {\n          \"date\": \"1956-11-25\",\n          \"price\": 7391.327964033565,\n          \"event\": \"string\",\n          \"source\": \"string\"\n        }\n      ],\n      \"tax_history\": [\n        {\n          \"year\": 8790,\n          \"tax\": 786.5948478421702,\n          \"assessment\": {\n            \"total\": 7228.293768748778,\n            \"land\": 1256.7621459787993,\n            \"building\": 4518.862413496634\n          }\n        },\n        {\n          \"year\": 5674,\n          \"tax\": 4036.6797432088597,\n          \"assessment\": {\n            \"total\": 1415.3810509331931,\n            \"land\": 8584.654920038301,\n            \"building\": 1535.7355556591012\n          }\n        }\n      ],\n      \"schools\": [\n        {\n          \"name\": \"string\",\n          \"education_levels\": [\n            \"string\",\n            \"string\"\n          ],\n          \"rating\": 7,\n          \"distance_in_miles\": 7781.76349942527,\n          \"funding_type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"education_levels\": [\n            \"string\",\n            \"string\"\n          ],\n          \"rating\": 9,\n          \"distance_in_miles\": 2161.670371537382,\n          \"funding_type\": \"string\"\n        }\n      ],\n      \"mls\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"abbreviation\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "becb9572-d2b2-4f64-8cc1-f39f48bc3860",
+              "name": "Bad request due to invalid property ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "detail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5ba05d6-f1eb-471c-9cc4-83f292b1aec9",
+              "name": "Unauthorized due to missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "detail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe7c9a05-df01-41e9-b22d-6e9af27e82c6",
+              "name": "Property not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "detail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0a14ec7-732b-4594-9b6e-b325120ef119",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "detail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dde4222-654e-4bd4-bb1d-59a7a2c63353",
+          "name": "List properties by MLS",
+          "request": {
+            "name": "List properties by MLS",
+            "description": {
+              "content": "Returns properties matching specific MLS (Multiple Listing Service) identifiers. Use this endpoint when you have MLS IDs and need to retrieve the corresponding property listings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                "v2",
+                "list-by-mls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mls_id",
+                  "value": "<string>",
+                  "description": "(Required) The MLS identifier to search for. Can be a single MLS ID or a comma-separated list of MLS IDs."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c41a954-824d-45e4-9bdb-b89d0e86011a",
+              "name": "Successfully returned properties matching the MLS ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-by-mls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mls_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 3521,\n  \"data\": {\n    \"home_search\": {\n      \"count\": 181,\n      \"total\": 8099,\n      \"results\": [\n        {\n          \"property_id\": \"string\",\n          \"listing_id\": \"string\",\n          \"status\": \"string\",\n          \"list_price\": 5541.326979098112,\n          \"list_date\": \"2018-08-31T07:24:01.876Z\",\n          \"last_sold_price\": 1258.6328128161294,\n          \"last_sold_date\": \"2007-01-29\",\n          \"description\": {\n            \"beds\": 9298,\n            \"baths\": 9024,\n            \"sqft\": 8391,\n            \"lot_sqft\": 934,\n            \"type\": \"string\",\n            \"year_built\": 6105,\n            \"garage\": 9031,\n            \"stories\": 5227\n          },\n          \"location\": {\n            \"address\": {\n              \"line\": \"string\",\n              \"city\": \"string\",\n              \"state_code\": \"string\",\n              \"state\": \"string\",\n              \"postal_code\": \"string\",\n              \"county\": \"string\",\n              \"coordinate\": {\n                \"lat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lon\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            \"neighborhood_name\": \"string\"\n          },\n          \"photos\": [\n            {\n              \"href\": \"http://dbxEmGSbDcsSAuFyFVLZ.zzs3fFBHaKBkeqvoFMwNx-etPm.QXF.8FkLgZzWVmjxoJeXF\"\n            },\n            {\n              \"href\": \"http://spHPyGF.vdsOswIknFLhOoSvm76malrUAM0htp\"\n            }\n          ],\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"property_id\": \"string\",\n          \"listing_id\": \"string\",\n          \"status\": \"string\",\n          \"list_price\": 5222.702541961427,\n          \"list_date\": \"2025-07-09T22:23:56.646Z\",\n          \"last_sold_price\": 3339.289370433871,\n          \"last_sold_date\": \"1961-09-06\",\n          \"description\": {\n            \"beds\": 9553,\n            \"baths\": 9197,\n            \"sqft\": 7730,\n            \"lot_sqft\": 7132,\n            \"type\": \"string\",\n            \"year_built\": 3296,\n            \"garage\": 6900,\n            \"stories\": 9587\n          },\n          \"location\": {\n            \"address\": {\n              \"line\": \"string\",\n              \"city\": \"string\",\n              \"state_code\": \"string\",\n              \"state\": \"string\",\n              \"postal_code\": \"string\",\n              \"county\": \"string\",\n              \"coordinate\": {\n                \"lat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lon\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            \"neighborhood_name\": \"string\"\n          },\n          \"photos\": [\n            {\n              \"href\": \"http://agBJmCcVyJAQMYTRDXBoWeup.owvzBbXtkpPhZ\"\n            },\n            {\n              \"href\": \"https://xWkiWGVOMXKFWTxkvS.xgmuKM07vjQJObyf\"\n            }\n          ],\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7645e8c3-81d1-4892-a578-59d8b61b6bac",
+              "name": "Bad request due to invalid MLS ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-by-mls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mls_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9bd72431-b1b8-4b17-93f1-507d8fd39eb6",
+              "name": "Unauthorized due to missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-by-mls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mls_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf24551a-f4a3-4cb5-9f7d-68a69a431746",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-by-mls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mls_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d211d70a-9f5d-47f3-b1c9-7730a37435a9",
+          "name": "List similar homes for sale",
+          "request": {
+            "name": "List similar homes for sale",
+            "description": {
+              "content": "Returns properties similar to a specified property that are currently listed for sale. Useful for providing comparable listings and helping users discover alternative options in the same area and price range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                "v2",
+                "list-similar-homes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "property_id",
+                  "value": "<string>",
+                  "description": "(Required) Unique property identifier returned from search or list endpoints."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62bee432-f3e8-452a-980c-f3d7c90743af",
+              "name": "Successfully returned similar properties",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-similar-homes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 3521,\n  \"data\": {\n    \"home_search\": {\n      \"count\": 181,\n      \"total\": 8099,\n      \"results\": [\n        {\n          \"property_id\": \"string\",\n          \"listing_id\": \"string\",\n          \"status\": \"string\",\n          \"list_price\": 5541.326979098112,\n          \"list_date\": \"2018-08-31T07:24:01.876Z\",\n          \"last_sold_price\": 1258.6328128161294,\n          \"last_sold_date\": \"2007-01-29\",\n          \"description\": {\n            \"beds\": 9298,\n            \"baths\": 9024,\n            \"sqft\": 8391,\n            \"lot_sqft\": 934,\n            \"type\": \"string\",\n            \"year_built\": 6105,\n            \"garage\": 9031,\n            \"stories\": 5227\n          },\n          \"location\": {\n            \"address\": {\n              \"line\": \"string\",\n              \"city\": \"string\",\n              \"state_code\": \"string\",\n              \"state\": \"string\",\n              \"postal_code\": \"string\",\n              \"county\": \"string\",\n              \"coordinate\": {\n                \"lat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lon\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            \"neighborhood_name\": \"string\"\n          },\n          \"photos\": [\n            {\n              \"href\": \"http://dbxEmGSbDcsSAuFyFVLZ.zzs3fFBHaKBkeqvoFMwNx-etPm.QXF.8FkLgZzWVmjxoJeXF\"\n            },\n            {\n              \"href\": \"http://spHPyGF.vdsOswIknFLhOoSvm76malrUAM0htp\"\n            }\n          ],\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"property_id\": \"string\",\n          \"listing_id\": \"string\",\n          \"status\": \"string\",\n          \"list_price\": 5222.702541961427,\n          \"list_date\": \"2025-07-09T22:23:56.646Z\",\n          \"last_sold_price\": 3339.289370433871,\n          \"last_sold_date\": \"1961-09-06\",\n          \"description\": {\n            \"beds\": 9553,\n            \"baths\": 9197,\n            \"sqft\": 7730,\n            \"lot_sqft\": 7132,\n            \"type\": \"string\",\n            \"year_built\": 3296,\n            \"garage\": 6900,\n            \"stories\": 9587\n          },\n          \"location\": {\n            \"address\": {\n              \"line\": \"string\",\n              \"city\": \"string\",\n              \"state_code\": \"string\",\n              \"state\": \"string\",\n              \"postal_code\": \"string\",\n              \"county\": \"string\",\n              \"coordinate\": {\n                \"lat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lon\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            \"neighborhood_name\": \"string\"\n          },\n          \"photos\": [\n            {\n              \"href\": \"http://agBJmCcVyJAQMYTRDXBoWeup.owvzBbXtkpPhZ\"\n            },\n            {\n              \"href\": \"https://xWkiWGVOMXKFWTxkvS.xgmuKM07vjQJObyf\"\n            }\n          ],\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "482bc502-7733-4470-886f-f40d1ddddc6f",
+              "name": "Bad request due to invalid property ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-similar-homes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d02295c5-754d-40de-833d-5aee00b2cab0",
+              "name": "Unauthorized due to missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-similar-homes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ef19942-9715-4be4-8d09-d50053703957",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-similar-homes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94e53d33-ce4c-485e-9cee-20dde91fd2b0",
+          "name": "List similar rental homes",
+          "request": {
+            "name": "List similar rental homes",
+            "description": {
+              "content": "Returns rental properties similar to a specified property. Helps renters discover alternative rental options in the same area with comparable features and pricing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                "v2",
+                "list-similar-rental-homes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "property_id",
+                  "value": "<string>",
+                  "description": "(Required) Unique property identifier returned from search or list endpoints."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8a4628b-9151-4f7c-82f9-f243651e51f1",
+              "name": "Successfully returned similar rental properties",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-similar-rental-homes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 3521,\n  \"data\": {\n    \"home_search\": {\n      \"count\": 181,\n      \"total\": 8099,\n      \"results\": [\n        {\n          \"property_id\": \"string\",\n          \"listing_id\": \"string\",\n          \"status\": \"string\",\n          \"list_price\": 5541.326979098112,\n          \"list_date\": \"2018-08-31T07:24:01.876Z\",\n          \"last_sold_price\": 1258.6328128161294,\n          \"last_sold_date\": \"2007-01-29\",\n          \"description\": {\n            \"beds\": 9298,\n            \"baths\": 9024,\n            \"sqft\": 8391,\n            \"lot_sqft\": 934,\n            \"type\": \"string\",\n            \"year_built\": 6105,\n            \"garage\": 9031,\n            \"stories\": 5227\n          },\n          \"location\": {\n            \"address\": {\n              \"line\": \"string\",\n              \"city\": \"string\",\n              \"state_code\": \"string\",\n              \"state\": \"string\",\n              \"postal_code\": \"string\",\n              \"county\": \"string\",\n              \"coordinate\": {\n                \"lat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lon\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            \"neighborhood_name\": \"string\"\n          },\n          \"photos\": [\n            {\n              \"href\": \"http://dbxEmGSbDcsSAuFyFVLZ.zzs3fFBHaKBkeqvoFMwNx-etPm.QXF.8FkLgZzWVmjxoJeXF\"\n            },\n            {\n              \"href\": \"http://spHPyGF.vdsOswIknFLhOoSvm76malrUAM0htp\"\n            }\n          ],\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"property_id\": \"string\",\n          \"listing_id\": \"string\",\n          \"status\": \"string\",\n          \"list_price\": 5222.702541961427,\n          \"list_date\": \"2025-07-09T22:23:56.646Z\",\n          \"last_sold_price\": 3339.289370433871,\n          \"last_sold_date\": \"1961-09-06\",\n          \"description\": {\n            \"beds\": 9553,\n            \"baths\": 9197,\n            \"sqft\": 7730,\n            \"lot_sqft\": 7132,\n            \"type\": \"string\",\n            \"year_built\": 3296,\n            \"garage\": 6900,\n            \"stories\": 9587\n          },\n          \"location\": {\n            \"address\": {\n              \"line\": \"string\",\n              \"city\": \"string\",\n              \"state_code\": \"string\",\n              \"state\": \"string\",\n              \"postal_code\": \"string\",\n              \"county\": \"string\",\n              \"coordinate\": {\n                \"lat\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"lon\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            \"neighborhood_name\": \"string\"\n          },\n          \"photos\": [\n            {\n              \"href\": \"http://agBJmCcVyJAQMYTRDXBoWeup.owvzBbXtkpPhZ\"\n            },\n            {\n              \"href\": \"https://xWkiWGVOMXKFWTxkvS.xgmuKM07vjQJObyf\"\n            }\n          ],\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4e82152-9cdc-407a-b51c-dbcdf7900802",
+              "name": "Bad request due to invalid property ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-similar-rental-homes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3d64b30d-6ae1-4b30-ba39-89e048c58b07",
+              "name": "Unauthorized due to missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-similar-rental-homes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a7f4852-d6e0-455e-95cf-d9449db9d722",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    "v2",
+                    "list-similar-rental-homes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://realtor.p.rapidapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7a181ee5-702d-406e-a0ea-cab5b332f8de",
+    "name": "Realtor.com Property Data Agents Properties API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Realtor.com Property Data API provides programmatic access to real estate listing data from Realtor.com, one of the largest property listing platforms in the United States. It offers endpoints for searching properties by location, price range, bedrooms, bathrooms, and other criteria, as well as retrieving detailed property information including listing status, photos, and neighborhood data. The API supports both for-sale and for-rent property searches and provides access to school ratings, market trends, and comparable property data that developers can use to build real estate applications and analytics tools. The API is available through RapidAPI.\n\nContact Support:\n Name: Realtor.com API Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Realtor.com Property Data Agents API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://realtor.p.rapidapi.com/agents/list",
+            "params": [
+              {
+                "name": "postal_code",
+                "value": "",
+                "type": "query",
+                "description": "Postal code to search for agents in a specific area."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Agent name to search for."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              }
+            ]
+          },
+          "docs": "Searches for real estate agents by location, name, or specialty. Returns agent profiles including contact information, listings count, ratings, and areas of expertise."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
