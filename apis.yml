@@ -24,6 +24,12 @@ apis:
   - Brokers
   - CRM
   - Leads
+  - Real-Estate
+  tags_raw:
+  - Agents
+  - Brokers
+  - CRM
+  - Leads
   - Real Estate
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
@@ -42,6 +48,12 @@ apis:
 - aid: realtor:lead-delivery-api
   name: Realtor.com Lead Delivery API
   tags:
+  - CRM Integration
+  - Delivery
+  - Leads
+  - Notification
+  - Real-Estate
+  tags_raw:
   - CRM Integration
   - Delivery
   - Leads
