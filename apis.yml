@@ -1,3 +1,4 @@
+name: Realtor
 aid: realtor
 deliveryModel:
   model: unknown
@@ -13,16 +14,18 @@ deliveryModel:
 specificationVersion: '0.23'
 accessModel:
   pricing: enterprise
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Enterprise · Self-serve signup
-  confidence: high
+  label: Enterprise
+  confidence: medium
+  try_now_blocked_by: example-domain
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/realtor.png
 url: https://raw.githubusercontent.com/api-evangelist/realtor/refs/heads/main/apis.yml
