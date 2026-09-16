@@ -29,7 +29,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/realtor.png
 url: https://raw.githubusercontent.com/api-evangelist/realtor/refs/heads/main/apis.yml
-modified: '2026-05-19'
+modified: '2026-09-16'
 apis:
 - aid: realtor:connections-plus-api
   name: Realtor.com Connections Plus API
@@ -53,12 +53,11 @@ apis:
     type: Documentation
   - url: asyncapi/realtor-connections-plus-asyncapi.yml
     type: AsyncAPI
-  description: >-
-    The Realtor.com Connections Plus API provides a direct connection between the Realtor.com lead delivery
-    system and supporting CRM platforms. It enables real estate agents, brokers, and offices to receive
-    buyer and seller leads in real time via API rather than email. The API delivers richer lead data including
-    listing URLs, geographic coordinates, dates, and MLS information that are not available through standard
-    email delivery.
+  description: The Realtor.com Connections Plus API provides a direct connection between the Realtor.com
+    lead delivery system and supporting CRM platforms. It enables real estate agents, brokers, and offices
+    to receive buyer and seller leads in real time via API rather than email. The API delivers richer
+    lead data including listing URLs, geographic coordinates, dates, and MLS information that are not
+    available through standard email delivery.
 - aid: realtor:lead-delivery-api
   name: Realtor.com Lead Delivery API
   tags:
@@ -81,10 +80,10 @@ apis:
     type: Documentation
   - url: asyncapi/realtor-lead-delivery-asyncapi.yml
     type: AsyncAPI
-  description: >-
-    The Realtor.com Lead Delivery API is an end-to-end integration layer that delivers real estate leads
-    directly from Realtor.com to third-party CRM systems. It provides faster and more secure lead delivery
-    compared to traditional email-based methods, with consistent formatting and additional data fields.
+  description: The Realtor.com Lead Delivery API is an end-to-end integration layer that delivers real
+    estate leads directly from Realtor.com to third-party CRM systems. It provides faster and more secure
+    lead delivery compared to traditional email-based methods, with consistent formatting and additional
+    data fields.
 - aid: realtor:realtor-agents-api
   name: realtor Agents API
   description: Endpoints for searching and retrieving information about real estate agents and brokers.
@@ -99,8 +98,7 @@ apis:
     url: https://rapidapi.com/apidojo/api/realty-in-us
 - aid: realtor:realtor-finance-api
   name: realtor Finance API
-  description: >-
-    Endpoints for retrieving mortgage rates and financial data relevant to real estate transactions.
+  description: Endpoints for retrieving mortgage rates and financial data relevant to real estate transactions.
   humanURL: https://www.realtor.com/marketing/connections/
   baseURL: https://api.example.com
   tags:
@@ -112,9 +110,8 @@ apis:
     url: https://rapidapi.com/apidojo/api/realty-in-us
 - aid: realtor:realtor-locations-api
   name: realtor Locations API
-  description: >-
-    Endpoints for searching and auto-completing location names, addresses, and geographic areas used as
-    inputs for property searches.
+  description: Endpoints for searching and auto-completing location names, addresses, and geographic areas
+    used as inputs for property searches.
   humanURL: https://www.realtor.com/marketing/connections/
   baseURL: https://api.example.com
   tags:
@@ -126,9 +123,8 @@ apis:
     url: https://rapidapi.com/apidojo/api/realty-in-us
 - aid: realtor:realtor-properties-api
   name: realtor Properties API
-  description: >-
-    Endpoints for searching, listing, and retrieving detailed property information including for-sale,
-    for-rent, and recently sold listings.
+  description: Endpoints for searching, listing, and retrieving detailed property information including
+    for-sale, for-rent, and recently sold listings.
   humanURL: https://www.realtor.com/marketing/connections/
   baseURL: https://api.example.com
   tags:
@@ -139,22 +135,27 @@ apis:
   - type: Documentation
     url: https://rapidapi.com/apidojo/api/realty-in-us
 common:
-  - type: AgenticAccess
-    url: agentic-access/realtor-agentic-access.yml
-  - type: DomainSecurity
-    url: security/realtor-domain-security.yml
-  - type: Authentication
-    url: authentication/realtor-authentication.yml
-  - url: https://www.realtor.com/news/feed/
-    type: Blog
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/realtor-com
-  - type: JSONLD
-    url: json-ld/realtor-context.jsonld
-  - type: JSONSchema
-    url: json-schema/realtor-lead-schema.json
-  - type: JSONSchema
-    url: json-schema/realtor-property-schema.json
-description: >-
-  Realtor.com is an online real estate marketplace operated by Move, Inc., providing home listings, neighborhood
-  information, and tools for buyers, sellers, and renters.
+- type: AgenticAccess
+  url: agentic-access/realtor-agentic-access.yml
+- type: DomainSecurity
+  url: security/realtor-domain-security.yml
+- type: Authentication
+  url: authentication/realtor-authentication.yml
+- url: https://www.realtor.com/news/feed/
+  type: Blog
+- type: LinkedIn
+  url: https://www.linkedin.com/company/realtor-com
+- type: JSONLD
+  url: json-ld/realtor-context.jsonld
+- type: JSONSchema
+  url: json-schema/realtor-lead-schema.json
+- type: JSONSchema
+  url: json-schema/realtor-property-schema.json
+description: Realtor.com is an online real estate marketplace operated by Move, Inc., providing home listings,
+  neighborhood information, and tools for buyers, sellers, and renters.
+tags:
+- Agents
+- Real-Estate
+- Brokers
+- CRM
+- Delivery
