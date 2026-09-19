@@ -115,6 +115,8 @@ apis:
   humanURL: https://www.realtor.com/marketing/connections/
   baseURL: https://api.example.com
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
