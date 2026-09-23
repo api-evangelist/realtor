@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Realtor.com Property Data Agents Properties API
-  description: The Realtor.com Property Data API provides programmatic access to real estate listing data from Realtor.com, one of the largest property listing platforms in the United States. It offers endpoints for searching properties by location, price range, bedrooms, bathrooms, and other criteria, as well as retrieving detailed property information including listing status, photos, and neighborhood data. The API supports both for-sale and for-rent property searches and provides access to school ratings, market trends, and comparable property data that developers can use to build real estate applications and analytics tools. The API is available through RapidAPI.
+  title: Realtor.com Property Data Properties API
+  description: The Realtor.com Property Data API provides programmatic access to real estate listing data from Realtor.com, one of the largest property listing platforms in the United States.
   version: '2.0'
   contact:
     name: Realtor.com API Support
@@ -139,6 +139,32 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
+    PropertyListResponse:
+      type: object
+      description: Response containing a list of property results with pagination metadata.
+      properties:
+        status:
+          type: integer
+          description: HTTP status code of the response.
+        data:
+          type: object
+          description: Container for property listing results.
+          properties:
+            home_search:
+              type: object
+              description: Search results container.
+              properties:
+                count:
+                  type: integer
+                  description: Total number of matching properties.
+                total:
+                  type: integer
+                  description: Total results available.
+                results:
+                  type: array
+                  description: Array of property summary objects.
+                  items:
+                    $ref: '#/components/schemas/PropertySummary'
     PropertyDescription:
       type: object
       description: Detailed property description and features.
@@ -176,23 +202,6 @@ components:
         text:
           type: string
           description: Free-text description of the property from the listing.
-    PriceHistoryEntry:
-      type: object
-      description: A single entry in the property price history.
-      properties:
-        date:
-          type: string
-          format: date
-          description: Date of the price event.
-        price:
-          type: number
-          description: Price in dollars at the time of the event.
-        event:
-          type: string
-          description: Type of price event such as listed, sold, or price_changed.
-        source:
-          type: string
-          description: Data source for the price record.
     NearbySchool:
       type: object
       description: Information about a school near the property.
@@ -216,94 +225,6 @@ components:
         funding_type:
           type: string
           description: Funding type such as public or private.
-    TaxHistoryEntry:
-      type: object
-      description: A single entry in the property tax assessment history.
-      properties:
-        year:
-          type: integer
-          description: Tax assessment year.
-        tax:
-          type: number
-          description: Annual property tax amount in dollars.
-        assessment:
-          type: object
-          description: Property tax assessment details.
-          properties:
-            total:
-              type: number
-              description: Total assessed value in dollars.
-            land:
-              type: number
-              description: Assessed land value in dollars.
-            building:
-              type: number
-              description: Assessed building value in dollars.
-    PropertyListResponse:
-      type: object
-      description: Response containing a list of property results with pagination metadata.
-      properties:
-        status:
-          type: integer
-          description: HTTP status code of the response.
-        data:
-          type: object
-          description: Container for property listing results.
-          properties:
-            home_search:
-              type: object
-              description: Search results container.
-              properties:
-                count:
-                  type: integer
-                  description: Total number of matching properties.
-                total:
-                  type: integer
-                  description: Total results available.
-                results:
-                  type: array
-                  description: Array of property summary objects.
-                  items:
-                    $ref: '#/components/schemas/PropertySummary'
-    Location:
-      type: object
-      description: Geographic location information for a property.
-      properties:
-        address:
-          type: object
-          description: Structured address information.
-          properties:
-            line:
-              type: string
-              description: Street address line.
-            city:
-              type: string
-              description: City name.
-            state_code:
-              type: string
-              description: Two-letter state abbreviation.
-            state:
-              type: string
-              description: Full state name.
-            postal_code:
-              type: string
-              description: Five-digit zip code.
-            county:
-              type: string
-              description: County name.
-            coordinate:
-              type: object
-              description: Geographic coordinates.
-              properties:
-                lat:
-                  type: number
-                  description: Latitude.
-                lon:
-                  type: number
-                  description: Longitude.
-        neighborhood_name:
-          type: string
-          description: Name of the neighborhood.
     PropertyDetailResponse:
       type: object
       description: Response containing comprehensive details about a specific property.
@@ -380,6 +301,62 @@ components:
                     abbreviation:
                       type: string
                       description: MLS abbreviation.
+    Location:
+      type: object
+      description: Geographic location information for a property.
+      properties:
+        address:
+          type: object
+          description: Structured address information.
+          properties:
+            line:
+              type: string
+              description: Street address line.
+            city:
+              type: string
+              description: City name.
+            state_code:
+              type: string
+              description: Two-letter state abbreviation.
+            state:
+              type: string
+              description: Full state name.
+            postal_code:
+              type: string
+              description: Five-digit zip code.
+            county:
+              type: string
+              description: County name.
+            coordinate:
+              type: object
+              description: Geographic coordinates.
+              properties:
+                lat:
+                  type: number
+                  description: Latitude.
+                lon:
+                  type: number
+                  description: Longitude.
+        neighborhood_name:
+          type: string
+          description: Name of the neighborhood.
+    PriceHistoryEntry:
+      type: object
+      description: A single entry in the property price history.
+      properties:
+        date:
+          type: string
+          format: date
+          description: Date of the price event.
+        price:
+          type: number
+          description: Price in dollars at the time of the event.
+        event:
+          type: string
+          description: Type of price event such as listed, sold, or price_changed.
+        source:
+          type: string
+          description: Data source for the price record.
     PropertySummary:
       type: object
       description: Summary information about a property listing.
@@ -546,6 +523,29 @@ components:
         age_max:
           type: integer
           description: Maximum year built filter.
+    TaxHistoryEntry:
+      type: object
+      description: A single entry in the property tax assessment history.
+      properties:
+        year:
+          type: integer
+          description: Tax assessment year.
+        tax:
+          type: number
+          description: Annual property tax amount in dollars.
+        assessment:
+          type: object
+          description: Property tax assessment details.
+          properties:
+            total:
+              type: number
+              description: Total assessed value in dollars.
+            land:
+              type: number
+              description: Assessed land value in dollars.
+            building:
+              type: number
+              description: Assessed building value in dollars.
   parameters:
     propertyId:
       name: property_id

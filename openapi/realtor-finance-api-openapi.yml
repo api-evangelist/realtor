@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Realtor.com Property Data Agents Finance API
-  description: The Realtor.com Property Data API provides programmatic access to real estate listing data from Realtor.com, one of the largest property listing platforms in the United States. It offers endpoints for searching properties by location, price range, bedrooms, bathrooms, and other criteria, as well as retrieving detailed property information including listing status, photos, and neighborhood data. The API supports both for-sale and for-rent property searches and provides access to school ratings, market trends, and comparable property data that developers can use to build real estate applications and analytics tools. The API is available through RapidAPI.
+  title: Realtor.com Property Data Finance API
+  description: The Realtor.com Property Data API provides programmatic access to real estate listing data from Realtor.com, one of the largest property listing platforms in the United States.
   version: '2.0'
   contact:
     name: Realtor.com API Support
@@ -36,15 +36,6 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
-    MortgageRatesResponse:
-      type: object
-      description: Response containing current mortgage rate information.
-      properties:
-        rates:
-          type: array
-          description: Array of mortgage rate objects for different loan types.
-          items:
-            $ref: '#/components/schemas/MortgageRate'
     MortgageRate:
       type: object
       description: Mortgage rate information for a specific loan type.
@@ -62,6 +53,15 @@ components:
           type: string
           format: date-time
           description: Timestamp when the rate was last updated.
+    MortgageRatesResponse:
+      type: object
+      description: Response containing current mortgage rate information.
+      properties:
+        rates:
+          type: array
+          description: Array of mortgage rate objects for different loan types.
+          items:
+            $ref: '#/components/schemas/MortgageRate'
   securitySchemes:
     rapidApiKey:
       type: apiKey

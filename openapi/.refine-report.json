@@ -1,10 +1,7 @@
 {
   "provider": "realtor",
   "sources": [
-    "realtor-agents-api-openapi.yml",
-    "realtor-finance-api-openapi.yml",
-    "realtor-locations-api-openapi.yml",
-    "realtor-properties-api-openapi.yml"
+    "_original/realtor-property-data-openapi.yml"
   ],
   "outputs": [
     "realtor-agents-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "realtor-property-data-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "realtor-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "realtor-finance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "realtor-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "realtor-properties-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
