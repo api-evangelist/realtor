@@ -139,224 +139,6 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
-    PropertyListResponse:
-      type: object
-      description: Response containing a list of property results with pagination metadata.
-      properties:
-        status:
-          type: integer
-          description: HTTP status code of the response.
-        data:
-          type: object
-          description: Container for property listing results.
-          properties:
-            home_search:
-              type: object
-              description: Search results container.
-              properties:
-                count:
-                  type: integer
-                  description: Total number of matching properties.
-                total:
-                  type: integer
-                  description: Total results available.
-                results:
-                  type: array
-                  description: Array of property summary objects.
-                  items:
-                    $ref: '#/components/schemas/PropertySummary'
-    PropertyDescription:
-      type: object
-      description: Detailed property description and features.
-      properties:
-        beds:
-          type: integer
-          description: Number of bedrooms.
-        baths:
-          type: integer
-          description: Total number of bathrooms.
-        baths_full:
-          type: integer
-          description: Number of full bathrooms.
-        baths_half:
-          type: integer
-          description: Number of half bathrooms.
-        sqft:
-          type: integer
-          description: Interior living area in square feet.
-        lot_sqft:
-          type: integer
-          description: Lot area in square feet.
-        type:
-          type: string
-          description: Property type such as single_family, condo, or townhome.
-        year_built:
-          type: integer
-          description: Year the property was built.
-        garage:
-          type: integer
-          description: Number of garage spaces.
-        stories:
-          type: integer
-          description: Number of stories in the property.
-        text:
-          type: string
-          description: Free-text description of the property from the listing.
-    NearbySchool:
-      type: object
-      description: Information about a school near the property.
-      properties:
-        name:
-          type: string
-          description: Name of the school.
-        education_levels:
-          type: array
-          description: Grade levels served such as elementary, middle, or high.
-          items:
-            type: string
-        rating:
-          type: integer
-          description: School rating on a scale of 1 to 10.
-          minimum: 1
-          maximum: 10
-        distance_in_miles:
-          type: number
-          description: Distance from the property in miles.
-        funding_type:
-          type: string
-          description: Funding type such as public or private.
-    PropertyDetailResponse:
-      type: object
-      description: Response containing comprehensive details about a specific property.
-      properties:
-        status:
-          type: integer
-          description: HTTP status code of the response.
-        data:
-          type: object
-          description: Container for property detail data.
-          properties:
-            property_detail:
-              type: object
-              description: Full property detail object.
-              properties:
-                property_id:
-                  type: string
-                  description: Unique identifier for the property.
-                listing_id:
-                  type: string
-                  description: Unique identifier for the listing.
-                status:
-                  type: string
-                  description: Current listing status.
-                list_price:
-                  type: number
-                  description: Current listing price in dollars.
-                list_date:
-                  type: string
-                  format: date-time
-                  description: Date the property was listed.
-                description:
-                  $ref: '#/components/schemas/PropertyDescription'
-                location:
-                  $ref: '#/components/schemas/Location'
-                photos:
-                  type: array
-                  description: Array of property photo objects.
-                  items:
-                    type: object
-                    properties:
-                      href:
-                        type: string
-                        format: uri
-                        description: URL of the property photo.
-                      description:
-                        type: string
-                        description: Caption or description of the photo.
-                price_history:
-                  type: array
-                  description: Historical price changes for the property.
-                  items:
-                    $ref: '#/components/schemas/PriceHistoryEntry'
-                tax_history:
-                  type: array
-                  description: Property tax assessment history.
-                  items:
-                    $ref: '#/components/schemas/TaxHistoryEntry'
-                schools:
-                  type: array
-                  description: Nearby schools with ratings and distance.
-                  items:
-                    $ref: '#/components/schemas/NearbySchool'
-                mls:
-                  type: object
-                  description: MLS listing information.
-                  properties:
-                    id:
-                      type: string
-                      description: MLS listing identifier.
-                    name:
-                      type: string
-                      description: MLS name.
-                    abbreviation:
-                      type: string
-                      description: MLS abbreviation.
-    Location:
-      type: object
-      description: Geographic location information for a property.
-      properties:
-        address:
-          type: object
-          description: Structured address information.
-          properties:
-            line:
-              type: string
-              description: Street address line.
-            city:
-              type: string
-              description: City name.
-            state_code:
-              type: string
-              description: Two-letter state abbreviation.
-            state:
-              type: string
-              description: Full state name.
-            postal_code:
-              type: string
-              description: Five-digit zip code.
-            county:
-              type: string
-              description: County name.
-            coordinate:
-              type: object
-              description: Geographic coordinates.
-              properties:
-                lat:
-                  type: number
-                  description: Latitude.
-                lon:
-                  type: number
-                  description: Longitude.
-        neighborhood_name:
-          type: string
-          description: Name of the neighborhood.
-    PriceHistoryEntry:
-      type: object
-      description: A single entry in the property price history.
-      properties:
-        date:
-          type: string
-          format: date
-          description: Date of the price event.
-        price:
-          type: number
-          description: Price in dollars at the time of the event.
-        event:
-          type: string
-          description: Type of price event such as listed, sold, or price_changed.
-        source:
-          type: string
-          description: Data source for the price record.
     PropertySummary:
       type: object
       description: Summary information about a property listing.
@@ -429,6 +211,95 @@ components:
           description: Tags describing property features.
           items:
             type: string
+    NearbySchool:
+      type: object
+      description: Information about a school near the property.
+      properties:
+        name:
+          type: string
+          description: Name of the school.
+        education_levels:
+          type: array
+          description: Grade levels served such as elementary, middle, or high.
+          items:
+            type: string
+        rating:
+          type: integer
+          description: School rating on a scale of 1 to 10.
+          minimum: 1
+          maximum: 10
+        distance_in_miles:
+          type: number
+          description: Distance from the property in miles.
+        funding_type:
+          type: string
+          description: Funding type such as public or private.
+    PriceHistoryEntry:
+      type: object
+      description: A single entry in the property price history.
+      properties:
+        date:
+          type: string
+          format: date
+          description: Date of the price event.
+        price:
+          type: number
+          description: Price in dollars at the time of the event.
+        event:
+          type: string
+          description: Type of price event such as listed, sold, or price_changed.
+        source:
+          type: string
+          description: Data source for the price record.
+    TaxHistoryEntry:
+      type: object
+      description: A single entry in the property tax assessment history.
+      properties:
+        year:
+          type: integer
+          description: Tax assessment year.
+        tax:
+          type: number
+          description: Annual property tax amount in dollars.
+        assessment:
+          type: object
+          description: Property tax assessment details.
+          properties:
+            total:
+              type: number
+              description: Total assessed value in dollars.
+            land:
+              type: number
+              description: Assessed land value in dollars.
+            building:
+              type: number
+              description: Assessed building value in dollars.
+    PropertyListResponse:
+      type: object
+      description: Response containing a list of property results with pagination metadata.
+      properties:
+        status:
+          type: integer
+          description: HTTP status code of the response.
+        data:
+          type: object
+          description: Container for property listing results.
+          properties:
+            home_search:
+              type: object
+              description: Search results container.
+              properties:
+                count:
+                  type: integer
+                  description: Total number of matching properties.
+                total:
+                  type: integer
+                  description: Total results available.
+                results:
+                  type: array
+                  description: Array of property summary objects.
+                  items:
+                    $ref: '#/components/schemas/PropertySummary'
     PropertyListRequest:
       type: object
       description: Request body for searching and filtering property listings.
@@ -523,29 +394,158 @@ components:
         age_max:
           type: integer
           description: Maximum year built filter.
-    TaxHistoryEntry:
+    Location:
       type: object
-      description: A single entry in the property tax assessment history.
+      description: Geographic location information for a property.
       properties:
-        year:
-          type: integer
-          description: Tax assessment year.
-        tax:
-          type: number
-          description: Annual property tax amount in dollars.
-        assessment:
+        address:
           type: object
-          description: Property tax assessment details.
+          description: Structured address information.
           properties:
-            total:
-              type: number
-              description: Total assessed value in dollars.
-            land:
-              type: number
-              description: Assessed land value in dollars.
-            building:
-              type: number
-              description: Assessed building value in dollars.
+            line:
+              type: string
+              description: Street address line.
+            city:
+              type: string
+              description: City name.
+            state_code:
+              type: string
+              description: Two-letter state abbreviation.
+            state:
+              type: string
+              description: Full state name.
+            postal_code:
+              type: string
+              description: Five-digit zip code.
+            county:
+              type: string
+              description: County name.
+            coordinate:
+              type: object
+              description: Geographic coordinates.
+              properties:
+                lat:
+                  type: number
+                  description: Latitude.
+                lon:
+                  type: number
+                  description: Longitude.
+        neighborhood_name:
+          type: string
+          description: Name of the neighborhood.
+    PropertyDescription:
+      type: object
+      description: Detailed property description and features.
+      properties:
+        beds:
+          type: integer
+          description: Number of bedrooms.
+        baths:
+          type: integer
+          description: Total number of bathrooms.
+        baths_full:
+          type: integer
+          description: Number of full bathrooms.
+        baths_half:
+          type: integer
+          description: Number of half bathrooms.
+        sqft:
+          type: integer
+          description: Interior living area in square feet.
+        lot_sqft:
+          type: integer
+          description: Lot area in square feet.
+        type:
+          type: string
+          description: Property type such as single_family, condo, or townhome.
+        year_built:
+          type: integer
+          description: Year the property was built.
+        garage:
+          type: integer
+          description: Number of garage spaces.
+        stories:
+          type: integer
+          description: Number of stories in the property.
+        text:
+          type: string
+          description: Free-text description of the property from the listing.
+    PropertyDetailResponse:
+      type: object
+      description: Response containing comprehensive details about a specific property.
+      properties:
+        status:
+          type: integer
+          description: HTTP status code of the response.
+        data:
+          type: object
+          description: Container for property detail data.
+          properties:
+            property_detail:
+              type: object
+              description: Full property detail object.
+              properties:
+                property_id:
+                  type: string
+                  description: Unique identifier for the property.
+                listing_id:
+                  type: string
+                  description: Unique identifier for the listing.
+                status:
+                  type: string
+                  description: Current listing status.
+                list_price:
+                  type: number
+                  description: Current listing price in dollars.
+                list_date:
+                  type: string
+                  format: date-time
+                  description: Date the property was listed.
+                description:
+                  $ref: '#/components/schemas/PropertyDescription'
+                location:
+                  $ref: '#/components/schemas/Location'
+                photos:
+                  type: array
+                  description: Array of property photo objects.
+                  items:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        format: uri
+                        description: URL of the property photo.
+                      description:
+                        type: string
+                        description: Caption or description of the photo.
+                price_history:
+                  type: array
+                  description: Historical price changes for the property.
+                  items:
+                    $ref: '#/components/schemas/PriceHistoryEntry'
+                tax_history:
+                  type: array
+                  description: Property tax assessment history.
+                  items:
+                    $ref: '#/components/schemas/TaxHistoryEntry'
+                schools:
+                  type: array
+                  description: Nearby schools with ratings and distance.
+                  items:
+                    $ref: '#/components/schemas/NearbySchool'
+                mls:
+                  type: object
+                  description: MLS listing information.
+                  properties:
+                    id:
+                      type: string
+                      description: MLS listing identifier.
+                    name:
+                      type: string
+                      description: MLS name.
+                    abbreviation:
+                      type: string
+                      description: MLS abbreviation.
   parameters:
     propertyId:
       name: property_id

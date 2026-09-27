@@ -38,13 +38,14 @@ apis:
   - Brokers
   - CRM
   - Leads
-  - Real-Estate
+  - Real Estate
   tags_raw:
   - Agents
   - Brokers
   - CRM
   - Leads
   - Real Estate
+  - Real-Estate
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
   humanURL: https://www.realtor.com/marketing/connections/
@@ -65,13 +66,14 @@ apis:
   - Delivery
   - Leads
   - Notification
-  - Real-Estate
+  - Real Estate
   tags_raw:
   - CRM Integration
   - Delivery
   - Leads
   - Notifications
   - Real Estate
+  - Real-Estate
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
   humanURL: https://www.realtor.com/marketing/connections/
@@ -158,6 +160,12 @@ common:
 description: Realtor.com is an online real estate marketplace operated by Move, Inc., providing home listings,
   neighborhood information, and tools for buyers, sellers, and renters.
 tags:
+- Agents
+- Real Estate
+- Brokers
+- CRM
+- Delivery
+tags_raw:
 - Agents
 - Real-Estate
 - Brokers

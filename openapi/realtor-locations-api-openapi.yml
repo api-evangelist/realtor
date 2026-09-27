@@ -39,15 +39,6 @@ paths:
         '429':
           description: Rate limit exceeded
 components:
-  parameters:
-    locationInput:
-      name: input
-      in: query
-      required: true
-      description: Partial location string for auto-completion. Can be a city name, zip code, address, or neighborhood name.
-      schema:
-        type: string
-        minLength: 1
   schemas:
     LocationSuggestion:
       type: object
@@ -90,6 +81,15 @@ components:
               description: List of location suggestions matching the input.
               items:
                 $ref: '#/components/schemas/LocationSuggestion'
+  parameters:
+    locationInput:
+      name: input
+      in: query
+      required: true
+      description: Partial location string for auto-completion. Can be a city name, zip code, address, or neighborhood name.
+      schema:
+        type: string
+        minLength: 1
   securitySchemes:
     rapidApiKey:
       type: apiKey
