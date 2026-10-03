@@ -36,6 +36,15 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
+    MortgageRatesResponse:
+      type: object
+      description: Response containing current mortgage rate information.
+      properties:
+        rates:
+          type: array
+          description: Array of mortgage rate objects for different loan types.
+          items:
+            $ref: '#/components/schemas/MortgageRate'
     MortgageRate:
       type: object
       description: Mortgage rate information for a specific loan type.
@@ -53,15 +62,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the rate was last updated.
-    MortgageRatesResponse:
-      type: object
-      description: Response containing current mortgage rate information.
-      properties:
-        rates:
-          type: array
-          description: Array of mortgage rate objects for different loan types.
-          items:
-            $ref: '#/components/schemas/MortgageRate'
   securitySchemes:
     rapidApiKey:
       type: apiKey

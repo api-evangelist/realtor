@@ -66,6 +66,18 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
+    AgentListResponse:
+      type: object
+      description: Response containing a list of real estate agents.
+      properties:
+        matching_rows:
+          type: integer
+          description: Total number of agents matching the search criteria.
+        agents:
+          type: array
+          description: Array of agent profile objects.
+          items:
+            $ref: '#/components/schemas/Agent'
     Agent:
       type: object
       description: Real estate agent profile information.
@@ -130,18 +142,6 @@ components:
               state_code:
                 type: string
                 description: Two-letter state code.
-    AgentListResponse:
-      type: object
-      description: Response containing a list of real estate agents.
-      properties:
-        matching_rows:
-          type: integer
-          description: Total number of agents matching the search criteria.
-        agents:
-          type: array
-          description: Array of agent profile objects.
-          items:
-            $ref: '#/components/schemas/Agent'
   securitySchemes:
     rapidApiKey:
       type: apiKey

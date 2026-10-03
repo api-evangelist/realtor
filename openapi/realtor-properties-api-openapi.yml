@@ -234,46 +234,6 @@ components:
         funding_type:
           type: string
           description: Funding type such as public or private.
-    PriceHistoryEntry:
-      type: object
-      description: A single entry in the property price history.
-      properties:
-        date:
-          type: string
-          format: date
-          description: Date of the price event.
-        price:
-          type: number
-          description: Price in dollars at the time of the event.
-        event:
-          type: string
-          description: Type of price event such as listed, sold, or price_changed.
-        source:
-          type: string
-          description: Data source for the price record.
-    TaxHistoryEntry:
-      type: object
-      description: A single entry in the property tax assessment history.
-      properties:
-        year:
-          type: integer
-          description: Tax assessment year.
-        tax:
-          type: number
-          description: Annual property tax amount in dollars.
-        assessment:
-          type: object
-          description: Property tax assessment details.
-          properties:
-            total:
-              type: number
-              description: Total assessed value in dollars.
-            land:
-              type: number
-              description: Assessed land value in dollars.
-            building:
-              type: number
-              description: Assessed building value in dollars.
     PropertyListResponse:
       type: object
       description: Response containing a list of property results with pagination metadata.
@@ -394,6 +354,60 @@ components:
         age_max:
           type: integer
           description: Maximum year built filter.
+    PropertyDescription:
+      type: object
+      description: Detailed property description and features.
+      properties:
+        beds:
+          type: integer
+          description: Number of bedrooms.
+        baths:
+          type: integer
+          description: Total number of bathrooms.
+        baths_full:
+          type: integer
+          description: Number of full bathrooms.
+        baths_half:
+          type: integer
+          description: Number of half bathrooms.
+        sqft:
+          type: integer
+          description: Interior living area in square feet.
+        lot_sqft:
+          type: integer
+          description: Lot area in square feet.
+        type:
+          type: string
+          description: Property type such as single_family, condo, or townhome.
+        year_built:
+          type: integer
+          description: Year the property was built.
+        garage:
+          type: integer
+          description: Number of garage spaces.
+        stories:
+          type: integer
+          description: Number of stories in the property.
+        text:
+          type: string
+          description: Free-text description of the property from the listing.
+    PriceHistoryEntry:
+      type: object
+      description: A single entry in the property price history.
+      properties:
+        date:
+          type: string
+          format: date
+          description: Date of the price event.
+        price:
+          type: number
+          description: Price in dollars at the time of the event.
+        event:
+          type: string
+          description: Type of price event such as listed, sold, or price_changed.
+        source:
+          type: string
+          description: Data source for the price record.
     Location:
       type: object
       description: Geographic location information for a property.
@@ -433,43 +447,6 @@ components:
         neighborhood_name:
           type: string
           description: Name of the neighborhood.
-    PropertyDescription:
-      type: object
-      description: Detailed property description and features.
-      properties:
-        beds:
-          type: integer
-          description: Number of bedrooms.
-        baths:
-          type: integer
-          description: Total number of bathrooms.
-        baths_full:
-          type: integer
-          description: Number of full bathrooms.
-        baths_half:
-          type: integer
-          description: Number of half bathrooms.
-        sqft:
-          type: integer
-          description: Interior living area in square feet.
-        lot_sqft:
-          type: integer
-          description: Lot area in square feet.
-        type:
-          type: string
-          description: Property type such as single_family, condo, or townhome.
-        year_built:
-          type: integer
-          description: Year the property was built.
-        garage:
-          type: integer
-          description: Number of garage spaces.
-        stories:
-          type: integer
-          description: Number of stories in the property.
-        text:
-          type: string
-          description: Free-text description of the property from the listing.
     PropertyDetailResponse:
       type: object
       description: Response containing comprehensive details about a specific property.
@@ -546,6 +523,29 @@ components:
                     abbreviation:
                       type: string
                       description: MLS abbreviation.
+    TaxHistoryEntry:
+      type: object
+      description: A single entry in the property tax assessment history.
+      properties:
+        year:
+          type: integer
+          description: Tax assessment year.
+        tax:
+          type: number
+          description: Annual property tax amount in dollars.
+        assessment:
+          type: object
+          description: Property tax assessment details.
+          properties:
+            total:
+              type: number
+              description: Total assessed value in dollars.
+            land:
+              type: number
+              description: Assessed land value in dollars.
+            building:
+              type: number
+              description: Assessed building value in dollars.
   parameters:
     propertyId:
       name: property_id
